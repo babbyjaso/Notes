@@ -13,7 +13,7 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "CySA+/Analyzing Network IOCs.md",
+                "file": "Cross-Site Scripting (XSS).md",
                 "mode": "source",
                 "source": false
               }
@@ -85,7 +85,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "CySA+/Analyzing Network IOCs.md",
+                "file": "Cross-Site Scripting (XSS).md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -102,7 +102,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "CySA+/Analyzing Network IOCs.md",
+                "file": "Cross-Site Scripting (XSS).md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -125,7 +125,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "CySA+/Analyzing Network IOCs.md"
+                "file": "Cross-Site Scripting (XSS).md"
               }
             }
           }
@@ -149,6 +149,9 @@
   },
   "active": "91745f7b37167271",
   "lastOpenFiles": [
+    "eJPT/Metasploit modules.md",
+    "eJPT/NMap scripts.md",
+    "CySA+/Analyzing Network IOCs.md",
     "Welcome.md",
     "Untitled.canvas",
     "Python/Variables and data types.md",

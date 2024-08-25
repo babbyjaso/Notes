@@ -25,3 +25,4 @@ document.addEventListner('keydown'. logKey)
 ```
 - if you don't know a javascript, go through the W3 schools javascript classes
 	- he recommends functions specifically
+	- god i gotta do js rip
