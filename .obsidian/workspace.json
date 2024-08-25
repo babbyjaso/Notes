@@ -65,7 +65,8 @@
               "state": {}
             }
           }
-        ]
+        ],
+        "currentTab": 1
       }
     ],
     "direction": "horizontal",
@@ -147,7 +148,7 @@
       "git-integration:Open git menu": false
     }
   },
-  "active": "91745f7b37167271",
+  "active": "a61c53ac67302a7e",
   "lastOpenFiles": [
     "eJPT/Metasploit modules.md",
     "eJPT/NMap scripts.md",
