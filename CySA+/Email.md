@@ -1,0 +1,49 @@
+- SPF (Sender Policy Framework
+	- DNS record listing hosts authorized to send email for the domain
+    - one per domain
+- you can authorize only one line in the DNS statement, but authorize multiple servers in that same line.
+    - TXT @ v=spf1 mx include:[server] include:[server2] -all
+    - TXT = text record
+    - spf1 = sender policy framework
+    - mx = email server
+    - google.com means they use g-suite
+- DKIM (DomainKeys Identified Mail
+	- cryptographic authentication mechanism
+    - public key published as a DNS record
+    - what happens:
+		- send email, gets hash of the headers
+	    - hash gets assigned private key
+	    - out goes public key
+	    - once letter is received, decrypted, compares hashes of headers
+	- verifies that the server sent it, not the person
+	    - could still be dealing with compromised/unauthorized accounts
+- DMARC (Domain-Based Message Authentication, Reporting, and Conformance
+    - framework ensuring proper application of SPF and DKIM
+    - also published as a DNS record
+    - DMARC works with both
+    - don’t gotta use SPF and DKIM, can just use one
+    - Using DMARC, your MTA will look up and verify that the headers for your email are legit
+- MTA = Message Transfer Agent
+- new problem: Cousin Domains
+    - DNS domain that looks similar to another name when rendered by a Mail User Agent (MUA)
+    - diontraining.com vs diontrainimg.com vs diontraning.com
+    - you can set up your own DNS records for email to then be authorized if you get in.
+- SMTP logs
+    - request/response format
+    - various codes
+	    - 220: server is ready
+	    - 250: message accepted
+	    - 421: service not available
+	    - 450: server cannot access mailbox to deliver a message
+	    - 451: local server aborted action due to processing error
+	    - 452: local server has insufficient storage space available
+	    - 221: goodbye
+    - don’t really need to know the codes for the exam, just know how to look for weird/sus domains
+- we have MIME (the thing that allows HTML to be in emails) so get ready for S/MIME
+    - Secure/Multipurpose Internet Mail Extensions
+    - encryption standard that adds digital signatures and public key cryptography to MIME
+    - public/private keys
+    - send over certificate with public key and digital ID, signs the message using the private key
+    - receive certificate, use the public key to decode the signature and the CA (Certificate Authority) validating the cert and the digital ID
+    - recipient will do the process over again, trust established
+**![](https://lh7-us.googleusercontent.com/jTL82ZAsno80Hkd_PVYv3oULPJpELOLcct632nTD_MzEMnGqcLzlaZ3Bv6VVOmgGQQXJrJ_pFikfyvbwoL5Qv6XEBiz9acYHCtvHg4PEenrZnQ0wZ86m4h8WDLnMN9fgRUvATjhjZWq6ITA-EMQjTks)**

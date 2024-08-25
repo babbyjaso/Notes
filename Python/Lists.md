@@ -1,0 +1,85 @@
+- Ordered, changeable, can have duplicates
+	- `list1 = ["A", "B", "C", "D", "E", "F"]`
+- Can be any data type
+	- [[Variables and data types#^data-types]]
+	- `list2 = ["A", 1, 2.0, ["A"], [], list(), ("A", "B", "C"), False]`
+- Can list out anything from it in any order
+	- `print(list1[0])`
+		- will spit out `A`
+	- `print(list1[-1])`
+		- will spit out `F`
+	- can repeat this with multiple counts (including the `-1`)
+	- Python will combine values if they're the same
+		- `print(list2[3][0])`
+			- spits out `A` because it's both index 3 and index 0
+		- `print(list2[3][-1])`
+			- spits out `A` because it's both index 3 and the last thing on the second list in the nested list
+- Can change the data in the list at any time
+	- `list1[0] = "X"`
+		- will print as `['X', 'B', 'C', 'D', 'E', 'F']`
+	- remove data with `del`
+		- `del list1[0]`
+		- will print as `['B', 'C', 'D', 'E', 'F']`
+	- add data with `.insert(place, value)`
+		- `list1.insert(0, "A")`
+		- will now print as `['A', 'B', 'C', 'D', 'E', 'F']`
+		- can also add data using overloaded [[Booleans & Operators#^operators]]
+			- `list1 = ["A"] + list1`
+	- add data with `.append`
+		- this will add it to the end of the list
+		- `list1.append("G")`
+			- prints as `['A', 'B', 'C', 'D', 'E', 'F', 'G']`
+- Can find the maximum and minimum values of lists
+	- `print(max(list1))`
+		- spits out `G`
+	- `print(min(list1))`
+		- spits out `A`
+- Can [[String formatting#^index|Index]] your list
+	- `print(list1.index("C"))`
+		- spits out `2` because C is the third in the list (index 2)
+	- Can also print out an index of the value that is the index of the list
+		- `print(list1[list1.index("C")])`
+		- spits out `C` because that is the index of C in the list.
+- Can reverse your list
+	- `list1.reverse()`
+	- spits out `['G', 'F', 'E', 'D', 'C', 'B', 'A']`
+- Can un reverse your list
+	- `list1 = list[::-1]`
+		- `:` start
+		- `:` stop
+		- `-1` step
+		- start at beginning stop at the end, step from the back going to the front
+	- spits out `['A', 'B', 'C', 'D', 'E', 'F', 'G']`
+- Can count how many things are in a list
+	- `print(list1.count("A"))`
+	- if you `list1.append('A')` that count will increase to `2`
+	- Don't want that extra A? `list1.pop()`
+		- "pops" it off the end of the list
+- Can extend your list
+	- `list3 = ["H", "I", "J"]`
+	- `list1.extend(list3)`
+	- Now spits out `['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J']`
+- Can organize your lists
+	- `list4 = [8, 12, 5, 6, 17, 2]`
+	- `list4.sort()`
+	- prints as `[2, 5, 6, 8, 12, 17]`
+	- Can reverse organize it as well
+		- `list4.sort(reverse=True)`
+		- prints as `[17, 12, 8, 6, 5, 2]`
+- Cannot copy a list by doing `list2 = list1`
+	- this will only reference `list1` and will only change if you make changes to `list1` _not_ `list2`
+	- `list5 = list4`
+	- `list5[2] = "X"`
+		- `print(list5)` will be `[17, 12, 'X', 6, 5, 2]`
+		- BUT ALSO `print(list4)` will be `[17, 12, 'X', 6, 5, 2]`
+- _**Can**_ copy a list
+	- `list6 = list4.copy()`
+	- `list6.append("X")`
+		- `print(list6)` becomes `[17, 12, 'X', 6, 5, 2, 'X']`
+		- `print(list4)` becomes `[17, 12, 'X', 6, 5, 2]`
+- `map()` function and lists
+	- map applies a function to all things in the list
+	- `list7 = ["1", "2", "3"]`
+		- `print(list7)` becomes `['1', '2', '3']`
+	- `list8 = list(map(float, list7))`
+		- `print(list8)` becomes `[1.0, 2.0, 3.0]`

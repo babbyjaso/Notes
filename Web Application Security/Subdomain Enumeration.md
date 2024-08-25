@@ -1,0 +1,27 @@
+Subdomains exist, you should enumerate them.
+- web browser
+	- "site:website.com"
+		- this will give you some starts
+		- basically OSINT your website
+			- see what's publicly available by the scanners
+	- crt.sh ^crt-sh
+		- certificate search
+			- search using "%.website.com"
+			- % wildcard because it's a database
+- CLI tools
+	- subfinder ^subfinder
+		- -d for domain
+		- -o to write to a file to grep later
+	- assetfinder ^assetfinder
+		- just put in your domain
+	- amass ^amass
+		- you should try out amass, because it seems interesting.
+	- httprobe
+		- you can use this to find out what subdomains are alive
+	- gowitness
+		- give it a file and take screenshots
+		- options
+			- -f = directory file
+			- -P = where to put the screenshots
+			- --no-http = little self explanatory
+		- this also makes sure that it's alive

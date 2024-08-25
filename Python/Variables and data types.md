@@ -1,0 +1,49 @@
+- Variables ^variables
+	- a way to store data in named locations
+	- reference word
+	- allocating space for that data to be stored based on the data type
+	- when creating a variable, use an `=`
+	- it's whatever you put in
+		- string
+		- integer
+		- etc
+	- can re-assign variables at any point
+		- define the type of variable with `type(variable)` ^type-variable
+	- python supports casting ^casting
+		- we can redefine the variable in the middle of the script
+		- so if we put a number in quotes, it will be a string
+		- but if we put `int("4")` it's now an integer
+	- cast must make sense
+		- `name = int("neut")` doesn't make sense
+		- that's a string of letters not integers
+	- Variables are case sensitive
+- Data types ^data-types
+	- Strings ^strings
+		- words in a sequence
+	- integers ^integers
+		- integral whole numbers
+	- [[Lists|Lists]]
+		- things in a bracket
+		- `["this", "is a", "list", 1]`
+		- assigning variables will assign them in sequence
+			- `list = ["thing", "stuff", "junk"]`
+			- `var1, var2, var3 = list`
+			- `var1` is now `"thing"`, etc.
+	- [[Tuple|tuple]]
+		- used to store multiple items in a single variable
+		- uses brackets
+	- [[Dictionaries|dictionary]]
+		- used to story data in `key:value` pairs
+		- uses curly braces `{}`
+	- [[Booleans & Operators|booleans]]
+		- true or false operator
+		- uses T/F
+	- range ^range
+		- sequence of numbers, starting from 0, increments of 1
+			- default settings
+		- stops before a specified number
+			- ```range(6)``` will stop at 5
+				- 0, 1, 2, 3, 4, 5
+		- `range(start, stop, step)`
+	- [[Sets]]
+		- data that's not ordered

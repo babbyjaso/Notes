@@ -1,0 +1,106 @@
+- SMB
+	- `smb-protocols`
+	    - will tell you the protocols that the smb service is using
+		    - NTLM, etc
+    - `smb-security-mode`
+	    - shows you what kind of account you can access by default
+		    - guest account? What does it authenticate to?
+    - `smb-enum-sessions`
+	    - oh here we go
+	    - shows the active sessions of the user on the machine
+	    - `--script-args` to enable some arguments for the script being run
+		    - in this case username `"smbusername=username"` and password `"smbpassword=password`
+	    - With this argument added, we can see when the other user’s session started, as long as we have creds.
+    - `smb-enum-shares`
+	    - will tell you what shares are on the machine
+	    - use guest as default, probably doesn’t work if that’s the case
+	    - things to look for:
+		    - IPC
+			    - null session, anonymous session
+			    - can get in as a guest
+			    - Type: STYPE_IPC_HIDDEN
+		    - ADMIN i guess
+			- print if you wanna try some printnightmare
+	    - this can also use authenticated arguments
+		    - will spit out more information, paths, etc.
+		    - current user access permissions 😯
+			    - whatever user you plugged into the authentication
+    - `smb-enum-users`
+	    - gives you user list
+	    - also gives you password policy
+    - `smb-server-stats`
+	    - server statistics
+	    - failed logins, permission errors, system errors, print jobs, files opened
+    - `smb-enum-domains`
+	    - groups, password policy
+    - `smb-enum-groups`
+	    - shows all the different groups and who’s in them
+    - `smb-enum-services`
+	    - shows services
+    - `smb-enum-shares`, `smb-ls`
+	    - runs the shares script and also does ls on those shares
+	    - now we can see what’s in the stuff
+    - `smb-os-discovery`
+- FTP
+	- `ftp-brute`
+	    - will brute force a list you give it
+	    - `--script-args="userdb=/path/to/list"`
+    - `ftp-anon`
+	    - will check for anonymous logins
+	    - will even `ls` the home folder neato torpedo
+- HTTP
+	- `http-enum`
+    - `http-headers`
+    - `http-methods`
+	    - `--script-args="http-methods.url-path=/directory"`
+	    - will show you all the methods that you can interact with the website
+	-` http-webdav-scan`
+	    - if you find a webdav folder
+	    - uses same args from above
+- SSH
+	- `ssh2-enum-algos`
+	    - all the algorithms that can be used to create the SSH key
+    - `ssh-hostkey`
+	    - `--script-args="ssh_hostkey=full"`
+	    - this will give you the full ssh-rsa key
+    - `ssh-auth-methods`
+	    - `script-args="ssh.user=username"`
+    - `ssh-brute`
+	    - `--script-args="userdb=path/to/file"`
+	    - this will run it’s own wordlist as well
+- MySQL
+	- `mysql-empty-password`
+	    - shows which accounts have an empty password
+    - `mysql-info`
+	    - information about what mysql is running
+    - `mysql-users`
+	    - `--script-args="mysqluser='root',mysqlpass=''"`
+	    - will give all the users
+    - `mysql-databases`
+	    - `--script-args="mysqluser='root',mysqlpass=''"`
+    - `mysql-variables`
+	    - for knowing how to interact with the database
+	    - look for datadir
+    - `mysql-audit`
+	    - `--script-args="mysql-audit.username='root',mysql-audit.password='',mysql-audit.filename='/usr/share/nmap/neslib/data/mysql-cis.audit'"`
+	    - will spit out an automated audit to see what passes and what fails.
+    - `mysql-dump-hashes`
+	    - `--script-args="username='root',password=''"`
+    - `mysql-query`
+	    - `--script-args="query='select count(*) from books.authors;',mysqluser='root',mysqlpass=''`
+- MSSQL
+	- `ms-sql-info`
+	    - more MS info about the server
+    - `ms-sql-ntlm-info`
+	    - `--script-args="mssql.instance-port=1433"`
+    - `ms-sql-brute`
+	    - `--script-args="userdb=/path/to/wordlist,passdb=/path/to/passlist"`
+    - `ms-sql-empty-password`
+    - `ms-sql-query`
+	    - `--script-args="mssql.username=user,mssql.password=password,ms-sql-query.query=''"`
+	    - you should probably output this as a file using -oN, because it’s gonna be messy
+    - `ms-sql-dump-hashes`
+	    - `--script-args="mssql.username=user,mssql.pasword=password"`
+    - `ms-sql-xp-cmdshell`
+	    - `mssql.username=user,mssql.password=password,ms-sql–xp-cmdshell.cmd="dir C:\"`
+	    - `type c:\flag.txt`

@@ -1,0 +1,35 @@
+- Will probably be review, but let's go over some stuff
+- HTML
+	- standard markup to create web pages
+	- text with tags
+- Cascade sheets
+	- styling for HTML
+	- can do css injection but unlikely
+- javascript
+	- here's where the meat is
+	- you need to understand javascript if you wanna be a web pentester
+- Client vs server
+	- Server
+		- where the website is hosted
+		- operations where the application is hosted
+			- data storage/retreiveal
+			- processing
+	- Client
+		- operations on the end user's device
+			- presenting data to the user
+			- user interactions
+- There will be other technologies, but we'll cover them later
+	- CDN
+	- Web application firewalls
+	- Load balances
+- Traditional vs Modern web apps
+	- Traditional
+		- usually require a full page reload
+		- returns complete HTML page
+	- Modern
+		- loading data in the background
+		- updates portions of the page, not the whole page
+- Want to get better?
+	- program every day
+		- Odin project https://www.theodinproject.com/
+		- free code camp https://www.freecodecamp.org/

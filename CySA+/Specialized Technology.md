@@ -1,0 +1,149 @@
+### Mobile Vulnerabilities
+- Bring your own device (BYOD)
+	- security policy set by a company that allows employees to user their personal smartphones, laptops, and tablets for work and connection to the corporate network
+	- could be anything from mice/keyboard to laptops/tablets
+	- lots of challenges with this:
+		- deperimeterization
+			- expands the perimeter of the office to the home
+		- unpatched and unsecured devices
+		- strained infrastructure
+			- more people = more network load
+		- forensic complications
+			- can’t make them give up their device
+		- lost or stolen devices
+			- whoops
+- there are specific threats and vulnerabilities with mobile platforms
+- android
+	- linux based OS by google
+	- largest market share
+	- larger number of older devices
+	- open nature of the OS
+	- usage of third-party apps
+- iOS
+	- only run on iPhones
+	- people like to jailbreak iPhone, the largest threat vector used by attackers
+	- apple devices are a show of wealth, making it prime for attacks
+	- zero-day exploits for iPhones are used by nation state actors and APTs against high value targets
+- Mobile Device Management (MDM)
+	- process and supporting technologies for track,controlling, and securing the organization’s mobile infrastructure
+	- can also use Enterprise Mobile Management (EMM)
+		- mobile device management suite with broader capabilities, such as identity and application management.
+	- some features;
+		- device enrollment and authentication
+		- remote lock and remote wipe
+		- identifying device locations
+		- patch and update deployments
+		- preventing root/jailbreaks
+		- Encrypted containers for data
+			- container for sensitive data, not your angry birds
+		- Restricting features/services
+	- you can use MDM/EMM to manage incidents and conduct investigations
+### IoT Vulnerabilities
+- Internet of Things
+	- group of objects that are connected to the wider internet by using embedded electronic components
+	- smart stuff
+- it’s not all secure!!!
+- most smart devices use an embedded version of linux or android as their OS
+- devices must be secured and updated when new vulnerabilities are found
+- IoT developers don’t think about security
+- segment them into their own network
+### Embedded System Vulnerabilities
+- Embedded Systems
+	- a computer system that is designed to perform a specific, dedicated function
+- IoT stuff got OSes too.
+- lesson will focus on specific function items
+- embedded systems are considered static environments where frequent changes are not made or allowed
+- embedded systems have very little support for identifying and correcting security issues
+- you want them on their own separate network
+- Programmable Logic Controller (PLC)
+	- a type of computer designed for deployment in an industrial or outdoor setting that can automate and monitor mechanical systems
+	- runs on firmware, which can be patched and reprogrammed to fix vulnerabilities
+	- infrequent tho
+- [[Mitigate Software Vulnerabilities and Attacks#^soc|System-on-Chip (SoC)]] ^soc
+	- processor that integrates the platform functionality of multiple logical controllers onto a single chip
+	- power efficient and used with embedded systems, because it’s a single chip.
+- Real-Time Operating System (RTOS)
+	- a type of OS that prioritizes deterministic execution of operations to ensure consistent response for time-critical tasks
+	- embedded systems typically cannot tolerate reboots or crashes and must have response times that are predictable to within microsecond tolerances
+- [[Hardware Assurance Best Practices#^anti-tamper|Field Programmable Gate Array (FPGA)]]
+	- processor that can be programmed to perform a specific function by a customer rather than at the time of manufacture
+	- end customer can configure the programming logic to run a specific application instead of using an ASIC (application-specific integrated circuit)
+### ICS & SCADA Vulnerabilities
+- a lot of embedded systems will be put into an ICS or SCADA network
+- Operational Technology (OT)
+	- communications network designed to implement an industrial control system rather than data networking
+	- technology that affects physical things.
+		- open/shut valve, etc
+	- these computers just do this one thing and typically are isolated.
+	- can still have windows machines talk to them
+	- industrial systems prioritize availability and integrity over confidentiality
+		- who cares about who does it, as long as it always can be done
+- ICS
+	- Industrial Control System
+	- A network that manages embedded systems
+	- used for electrical power stations, water suppliers, health services, telecommunications, manufacturing and defense needs
+	- here’s a thing ICS uses: Fieldbus
+		- Digital serial data communications used in operational technology networks to link PLCs
+		- PLC is the thing that tells the physical thing what to do
+	- Human-Machine Interface (HMI)
+		- input and output controls on a PLC to allow a user to configure and monitor the system
+		- the way that you push button to open valve
+	- ICS manages the process automation by linking together PLCs using a fieldbus to make changes in the physical world
+	- use HMI to see what happened and make informed decisions on what to do next
+	- so, how do we log this? Data Historian
+	- software that aggregates and catalogs data from multiple sources within an industrial control system
+- SCADA
+	- Supervisory Control and Data Acquisition
+	- Type of industrial control system that manages large-scale, multiple-site devices and equipment spread over geographic region
+	- ICS = one plant, SCADA = multiple plants
+	- typically run as software on ordinary computers to gather data from and managed plant devices and equipment with embedded PLCs
+- Modbus
+	- communications protocol used in operational technology networks
+	- the TCP/IP of OT networks
+	- gives control servers and SCADA hosts the ability to query and change the configuration of each PLC
+	- it’s NOT TCP/IP, different everything almost
+### Mitigating Vulnerabilities
+- so now, how to keep vulnerabilities out of your ICS/SCADA system?
+- NIST 800-82
+- four key controls for mitigating vulnerabilities in specialized systems
+	- establish administrative control over OT networks by recruiting staff with relevant expertise
+		- ICS/SCADA is a different beast
+	- implement the minimum network links by disabling unnecessary links, services, and protocols
+		- least permissions, etc
+	- Develop and test a patch management program for OT networks
+	- perform regular audits of logical and physical access to systems to detect possible vulnerabilities and intrusions
+	- WARNING: enumeration tools and vuln scans can cause problems on OT networks
+		- wireshark to capture packets to do passive analysis
+### Premise System Vulnerabilities
+- wtf is a premise system
+- systems used for building automation and physical access security
+	- many system designs allow the monitoring to be accessible from the corporate data network or even directly from the internet
+- Building Automation System (BAS)
+	- components and protocols that facilitate the centralized configuration and monitoring of mechanical and electrical systems within offices and data centers
+	- not an ICS/SCADA for it, but the step after that.
+	- turn on and off stuff on a specific floor
+	- put in their own network
+- things to keep in mind for a BAS
+	- process and memory vulnerabilities in PLC
+	- plaintext credentials or keys in application code
+	- code injection via web user interface
+- can create a DoS condition by affecting building automation systems like HVAC
+	- holy shit you can take away A/C to do an attack
+- Physical Access Control System (PACS)
+	- components and protocols that facilitate the centralized configuration and monitoring of security mechanisms within offices and data centers 
+	- can be implemented as part of your BAS or a separate system
+	- WARNING: often installed and maintained by an external supplier and therefore omitted from risk and club assessments by analysts.
+### Vehicular Vulnerabilities
+- Teslas can drive themselves lol
+- vehicles connect numerous subsystems over a controller area network (CAN)
+	- digital serial data communications network used within vehicles
+- the primary external interface is the Onboard Diagnostics (OBD-II) module
+	- you use this for cars!!!!
+	- needed something to check why the check engine light is on.
+- CAN bus acts like a ethernet, all trust
+- our cars are basically an IoT machine
+- No concept of source addressing or message authentication in a CAN bus
+- ways to get to the CAN bus:
+	- attach the exploit to OBD-II
+	- exploit over onboard cellular
+	- exploit over onboard Wi-Fi

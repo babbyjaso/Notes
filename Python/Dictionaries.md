@@ -1,0 +1,34 @@
+- used to store data in key value pairs
+	- `{key:value}`
+	- `dict1 = {"a":1, "b":2, "c":3}`
+- get the length of the dictionary
+	- `print(len(dict1))`
+- can find key pairs a few ways
+	- `print(dict1["a"])`
+		- spits out `1`
+	- `print(dict1.get("a"))`
+		- also spits out `1`
+- can print out the keys
+	- `print(dict1.keys())`
+		- spits out `dict_keys(['a', 'b', 'c'])`
+- can print out the values
+	- `print(dict1.values())`
+		- spits out `dict_values([1, 2, 3])`
+- can print out the items in the dictionary
+	- `print(dict1.items())`
+		- spits out`dict_items([('a', 1), ('b', 2), ('c', 3)])`
+- can update things in the dictionary
+	- but we can't have duplicate values, they have to be singular
+	- `dict1["d"] = 4`
+		- prints as `{'a': 1, 'b': 2, 'c': 3, 'd': 4}`
+	- `dict1["a"] = 0`
+		- prints as `{'a': 0, 'b': 2, 'c': 3, 'd': 4}`
+	- `dict1.update({"a": 1})`
+		- prints as `{'a': 1, 'b': 2, 'c': 3, 'd': 4}`
+- can have a dictionary in a dictionary
+	- `dict1["c"] = {"a":1, "b":2}`
+		- prints as `{'a': 1, 'b': 2, 'c': {'a': 1, 'b': 2}}`
+- can also have empty dictionaries
+	- can be defined later
+	- `dict2 = {}`
+	- `dict3 = dict()`

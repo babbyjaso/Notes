@@ -1,0 +1,85 @@
+- Booleans ^booleans
+	- It's True or False
+	- assign a boolean to a variable, then test if it's true or not
+	1. `valid = True`
+	2. `not_valid = False`
+	3. `print(valid == True)`
+	4. `print(not_valid == True)`
+	- This will spit out
+		- `True` because `True` is `True`
+		- `False` because `False` is not `True`
+	- Can also be compared to numbers
+	- `print((10 < 9) == True)`
+		- False
+	- `print((10 == 10) == True)`
+		- True
+	- `print((10 != 10) == True)`
+		- False
+	- `print((10 >= 10) == True)`
+		- True
+	- `print((10 <= 10) == True)`
+		- True
+	- `print((10 > 9) == True)`
+		- True
+	- You can remove the `== True` from all of these and they will work the same.
+	- Now let's get complicated
+	- `print(10 > 5 and 10 < 5)`
+		- Both statements need to be true
+		- This would be `False`
+	- `print(10 > 5 or 10 < 5)`
+		- only one statement needs to be true
+		- This would be `True`
+- Operators ^operators
+	- `==` ^equal
+		- equal
+	- `!=` ^not-equal
+		- not equal
+		- Can also replicate with `not`
+		- `print(not valid)`
+			- spits out `False`
+	- `>` ^greater-than
+		- Greater than
+	- `<` ^less-than
+		- Less than
+	- `>=` ^greater-than-equal-to
+		- Greater than or equal to
+	- `<=` ^less-than-equal-to
+		- Less than or equal to
+	- `and` ^and
+		- Both statements needs to be true
+	- `or` ^or
+		- One of the statements needs to be true
+	- `+` ^addition
+		- Addition
+	- `-` ^subtraction
+		- subtraction
+	- `/` ^division
+		- Division
+	- `//` ^rounded-division
+		- Division, but it rounds to the nearest whole number
+	- `*` ^multiplication
+		- Multiplication
+	- `**` ^power-of
+		- Power of
+	- `%` ^remainder
+		- Remainder
+		- Divides first argument by second argument and returns the remainder
+	- `+=`^add-to
+		- add to what the variable is equal to
+	- `-=` ^subtract-to
+		- subtract what the variable is equal to
+	- `*=` ^multiply-to
+		- multiply what the variable is equal to
+	- `/=` ^divide-to
+		- divide what the variable is equal to
+	- `&`
+		- Compares arguments/variables/etc.
+		- shorthand for [[Booleans & Operators#^and|and]]
+	- `|`
+		- compares arguments/variables/etc
+		- shorthand for [[Booleans & Operators#^or|or]]
+	- 
+- Can represent booleans as numbers
+	- `bool(0)` is `False`
+	- `bool(1)` is `True`
+- can evaluate math expressions as well

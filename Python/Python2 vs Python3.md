@@ -1,0 +1,9 @@
+- Python2
+	- no longer under development
+	- will (for the most part) not run in Python3
+- Python3
+	- stores strings as unicode by default
+		- was ascii
+- if you don't know how to run a script, try both
+	- printing strings is different, so trying to print will give you some clues
+- if you have a choice, use Python3

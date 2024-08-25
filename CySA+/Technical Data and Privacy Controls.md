@@ -1,0 +1,129 @@
+- For more managerial controls: [[Non-technical Data and Privacy Controls]]
+### Access Controls
+- access control model can be applied to data or software resource
+	- file system
+	- network
+	- database
+- Uses ACLs
+	- each record in an ACL is an access control entry (ACE)
+- Database security allows for a more fine-grained permission configuration
+	- based on columns and actions
+- geographic access requirements
+- storage locations should consider data sovereignty issues
+	- employees may need access from multiple geographic locations
+### File System Permissions
+- incorrect permissions allocated to a resource can cause a data breach
+- Windows
+	- icacls
+		- command line tool for showing and modifying file permissions
+			- N - No access
+			- F - Full access
+			- R - Read-only
+			- RX - read and execute
+			- M - modify
+			- W - write
+			- D - delete
+	- a comma-separated list of permissions is used for complex permissions
+- Linux
+	- everything is treated as a file within Linux
+	- just three permissions (kinda)
+		- `r` - Read
+			- the ability to access and view the contents of a file or list the contents of a directory
+		- `w` - Write
+			- the ability to save changes to a file, or create, rename and delete files in a directory
+			- need execute to delete a file
+		- `x` - Execute
+			- the ability to run a script, program, or other software file, or the ability to access a directory, execute a file from that directory, or perform a task on that directory
+	- Owner permissions
+		- these permissions determine what the file’s owner can do with the file
+	- Group permissions
+		- these permissions determine what members of the file’s group who are not the owner can do with it
+	- World or Other Permissions
+		- these permissions determine what users who are not the file’s owner or members of its group can do with the file
+	- always in that order on linux
+	- there’s also numbers to assign permissions
+	- ![[permissions venn diagram.png]]]
+	- `chmod` to modify permissions
+		- `chmod g+x, o-r home`
+			- for file/directory home, add execute to the group, remove read from other
+		- `chmod u=rwx,g=rw,o=rx home`
+			- assigning permissions to different groups
+		- `chmod 755 home`
+			- owner has all permissions, group and other have read execute
+	- `chown`
+		- changes owner of the file
+### Encryption
+- not a full review of all encryption
+- concepts of encryption
+- used to secure information for different data states
+- encryption is a form of risk mitigation for access controls
+- Data at rest ^data-at-rest
+	- inactive data that is stored physically in any digital form
+	- protected by disk, database file or folder encryption
+- Data in motion ^data-in-motion
+	- data that is actively being transmitted over a network
+	- protected by transport encryption protocols
+		- IPSec
+		- TLS
+		- WPA2
+- Data in Use ^data-in-use
+	- active data which is stored in a non-persistent digital state
+	- usually in RAM, CPU caches or CPU registers
+	- protected by secure processing mechanisms
+		- hardware security and root of trust
+### Data Loss Prevention
+- a software solution that detects and prevents sensitive information from being stored on unauthorized systems or transmitted over unauthorized networks
+- main components
+	- policy server
+	- endpoint agents
+	- network agents
+- DLP agents can scan both structured and unstructured formats
+- the transfer of content can then be blocked if it does not conform to a predefined policy
+- DLP systems act when a policy violation is detected
+- Will do one of four actions:
+	- alert only
+	- block
+	- quarantine
+	- tombstone
+		- the original file is quarantined and replaced with a policy violation file
+- DLP remediation can occur using client-side or server-side mechanisms
+### DLP Discovery and Classification
+- different mechanisms for detection
+- Classification
+	- rule based on confidentiality classification tag or label attached to the data
+- Dictionary
+	- set of patterns that should be matched
+- Policy Template
+	- template contains dictionaries optimized for data points in a regulatory or legislative schema
+	- matches text formats
+- Exact Data Match (EDM)
+	- structured database of string values to match
+	- searches with hashed values
+- Document Matching
+	- matching based on an entire or partial document based on hashes
+- Statistical/Lexicon
+	- further refinement of partial document matching to use machine learning to analyze a range of data sources
+### Deidentification Controls
+- Deidentification
+	- methods and technologies that remove identifying information from data before it is distributed
+- deidentification is often implemented as part of database design
+- Data Masking
+	- deidentification method where generic or placeholder labels are substituted for real data while preserving the structure or format of the original data
+	- covering up the data, basically
+- Tokenization
+	- deidentification method where a unique token is substituted for real data
+	- be careful if it’s reversible, or able to be looked up
+- Aggregation/Banding
+	- deidentification technique where data is generalized to protect the individuals involved
+	- “out of the x that participated, y had”
+- Reidentification
+	- an attack that combines a deidentified dataset with other data sources to discover how secure the deidentification method used is.
+### DRM and Watermarking
+- source your art
+- Digital Rights Management (DRM)
+	- copyright protection technologies for digital media which attempts to mitigate the risk of unauthorized copies being distributed
+- DRM can be implemented using hardware or software approaches
+- Watermarking
+	- methods and technologies that apply a unique anti-tamper signature or message to a copy of a document
+- Forensic Watermark
+	- a digital watermark that can defeat attempts at removal by cropping pages or images in the file

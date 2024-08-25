@@ -1,0 +1,163 @@
+### Identity and Access Management
+- Identity and Access Management (IAM)
+	- Security process that provides identification, authentication, and authorization mechanisms for user, computers and other entities to work with organizational assets like networks, operating systems and applications
+- every unique subject in the organization is identified and associated with an account
+	- Personnel
+	- endpoints
+		- devices that people use to gain access to do their job
+		- credentials need to be 
+	- servers
+		- sits behind, but distributes the policies
+	- software
+	- Roles
+		- Support the identities of various assets by defining the resources an asset has permission to access based on the function the asset fulfills
+		- roles can be assigned to different subjects
+		- Windows has groups, you assign permissions to the group
+	- An IAM system contains technical components like Directory services and repositories, access management tools, and systems that audit and report on ID management capabilities
+		- create/deprovision accounts
+		- manage accounts
+		- audit accounts
+		- evaluate identity-based threats
+			- evaluate threats to your IAM system
+			- check for leaked passwords
+		- Maintain compliance
+	- Risks in IAM
+		- caused by accounts
+			- User accounts
+			- Privileged accounts
+			- Shared accounts
+### Password Policies
+- Passowrd Policies
+	- a policy document that promotes strong passwords by specifying a minimum password length, requiring complex passwords, requiring periodic password changes, and placing limits on reuse of passwords
+- password protection policies mitigate against the risk of attackers being able to compromise an account
+- NIST 800-63B has been updated
+	- Complexity rules should not be enforced
+		- people write them down because it’s too complicated
+	- Aging policies should not be enforced
+		- it is, once again, too complicated
+	- Password hints should not be used
+		- yeah that tracks
+- Password reuse across multiple sites is a huge vulnerability
+	- how do we avoid this?
+- Password Manager
+	- software used to generate a pseudo random passphrase for each website a user needs to log-on
+- what if you forget your password?
+	- Challenge Questions
+		- asks the user for information that only they should know, such as their first school, first model of car, or their first pet’s name
+	- [[Identity and Access Management (IAM) Solutions#^MFA|Two-Step Verification]]
+		- user provides a secondary communication channel like another email address or cell number to receive a one-time code to verify their identity when resetting a password.
+### SSO and MFA
+- Single Sing-On (SSO)
+	- authentication technology that enables a user to authenticate once and receive authorizations for multiple services
+- advantages:
+	- user does not need multiple user accounts and passwords
+- disadvantage
+	- if the user account is compromised, the attacker has access to everything.
+- Multi Factor Authentication (MFA) ^MFA
+	- authentication scheme that requires the user to present at least two different factors as credentials, from something you know, something you have, something are, something you do, and somewhere you are.
+	- 2FA is for two factors are required for authentication
+- types of authentication
+	- two-step verification
+		- SMS codes
+		- Email codes
+	- biometric
+		- fingerprint scanner
+		- face scanner
+	- certificate-based
+		- digital certificates to identify yourself
+	- location-based
+		- IP location
+			- can be spoofed
+		- GPS coordinates
+### Certificate Management
+- certificate management
+	- the practice of issuing, updating, and revoking digital certificates
+- the principal means of assuring the identity of machines and application code is to issue them with a digital certificate
+- various tools such as
+- sigcheck
+	- sysinternals utility that allows you to verify root certificates in the local store against microsoft's master trust list
+- OpenSSL
+	- library of software functions supporting the SSL/TLS protocol
+- certutil
+	- windows utility that allows you to displace certification authority (CA) configuration information, configure Certificate Services, backup and restore CA components, and verify the certificate’s key pair, and certificate chains
+- Here’s what all this involves
+	- installing, updating, and validating trusted root certificates
+	- deploying, updating and revoking subject certificates
+	- preventing use of self-signed certificates
+		- bad stuff self-signs most of the time
+	- SSH key management
+### Federation
+- Federation
+	- a process that provides a shared login capability across multiple systems and enterprises
+- Federation allows the company to trust accounts created and managed by a different network
+	- LinkedIn, Facebook, Google logons
+- Trust relationships are setup between the two networks (identity provider and the service provider)
+- ![[federation.png]]
+- all authentication is done by 3rd party
+- NOT SSO
+	- a cryptographic hash of their credentials is passed between systems as the means of sharing in single sign-on
+	- the sign-on is provided as a service by the identity provider in a federation
+- provisioning and deprovisioning with federation
+	- changes to user accounts must be propagated quickly between the identity provider and service provider
+### Privilege Management
+- Privilege Management
+	- The use of authentication and authorization mechanism to provide an administrator with centralized or decentralized control of user and group role-based privilege management
+- most policies are designed with the principles of least privilege and separation of duties
+	- least privilege
+		- The idea that someone only needs the most restricted role to perform their duties.
+	- Separation of Duties
+		- A means of establishing checks and balances agains the possibility that insider threats can compromise critical systems or procedures
+- Access Control
+	- Discretionary Access control (DAC)
+		- access control model where each resource is protected by an access control list (ACL) managed by the resource’s owner/owners
+		- Windows uses DAC
+	- Mandatory Access Control (MAC)
+		- Access control model where resources are protected by inflexible, system defined rules where every resource (object) and user (subject) is allocated a clearance level (or label)
+		- everything is labeled, very millitarized.
+		- most OS don’t do it, but SELinux has it
+	- Role-Based Access Control (RBAC)
+		- An access control model where resources are protected by ACLs that are managed by admins that provide user permissions based on job functions
+		- group permissions
+		- can be partially implemented in windows throught he concept of group accounts
+	- Attribute-Based Access Control (ABAC)
+		- access control technique that evaluates a set of attributes that each subject possesses to determine if access should be granted
+		- can be used to implement controls for separation of duties
+		- user metadata
+		- the most complicated type of access control to implement, but also the most flexible.
+### IAM Auditing
+- IAM Auditing is necessary to detect compromise of a legitimate account, rogue account use, and insider threat.
+- Best way to do it: monitoring and logging
+- Audit Logs
+	- a log of all file access and authentications within a network-based operating system, application or service.
+	- accounts for user actions
+	- detecting intrusions or attempted intrusions
+- logging is great, don’t drown in logs though
+- logs are overwritten when they reach their maximum allocated size, so back up your logs
+- logs must be kept secure and maintain their integrity
+- determining what to log can be a challenge for security personnel
+	- don’t log everything, man.
+- check out the Audit Policy Recommendations from MS
+	- account log-on and management events
+	- process creation
+	- object access
+	- changes to audit policy
+	- changes to system security and integrity
+- primary method to uncover account access violations is by conducting a log review
+	- multiple consecutive authentication failures
+	- unscheduled changes to a system’s configuration
+	- sequencing errors or gaps in logs
+- manual reviews oh no
+	- gotta make sure no one has credentials after they’re fired or moved.
+- Recertification
+	- Manual review of accounts, permissions, configurations and clearance levels at a given interval
+### Conduct and Use Policies
+- this will be quick
+- security policies can be used to direct behavior of end-user employees
+- three types
+	- code of conduct
+		- defined set of rules, ethics, and expectations for employees in a particular job role
+	- privileged user agreement
+		- a contract with terms stating a code of conduct for employees assigned high-level privileges on network and data systems
+	- acceptable use policy
+		- a policy that governs employees use of company equipment and internet services
+		- what can a person use on company time?

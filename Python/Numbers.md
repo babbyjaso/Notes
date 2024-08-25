@@ -1,0 +1,35 @@
+- python supports different types of numbers
+	- Integers [[Variables and data types#^integers]]
+	- Float ^float
+		- useful for storing floating point numbers
+			- numbers that may contain decimal places
+		- be careful with what numbers you want in you script
+			- don't have integers when you need floaters
+	- Complex ^complex
+		- algebra stuff
+		- ```tl_complex = 3.14j```
+	- Hexadecimal ^hexadecimal
+		- hex numbers
+		- ```tl_hex = 0xa```
+			- this will spit out 10
+		- underlying type is integer, but we've declared it in hexadecimal
+	- Octal ^octal
+		- octal numbering
+		- ```tl_octal = 0o10```
+			- this will spit out 8
+		- again, underlying type is integer, but we've declared it in octal
+- python allows us to print out a numerical value in any way we want
+	- ```print(1 + 0x1 + 0o1)
+		- that's 1+1+1, so it will print 3
+- Several number helper functions
+	- abs(number) ^abs
+		- absolute value of the number
+			- takes the negative off if it has a negative
+	- round(number) ^round
+		- rounds number up/down
+			- .5 will round down
+	- bin(number) ^bin
+		- binary representation of a number
+		- ```bin(8)``` will spit out ```0b1000```
+	- hex(number) ^hex
+		- hexadecimal 

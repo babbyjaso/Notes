@@ -1,0 +1,31 @@
+- SMB
+	- `auxiliary/scanner/smb/smb_version`
+    - `auxiliary/scanner/smb/smb2`
+	    - will show if it runs smb2
+	- `auxiliary/scanner/smb/smb_login`
+		- used for brute forcing
+- HTTP
+	- `use auxiliary/scanner/http/http_version`
+    - `use auxiliary/scanner/http/brute_dirs`
+	    - this is just `dirb`
+    - `use auxiliary/scanner/http/robots_txt`
+- MySQL
+	- `auxiliary/scanner/mysql/mysql_writable_dirs`
+	    - use the list in usr/share/metasploit-framework/data/wordlists/directory.txt
+	    - can see advanced options by typing “advance”
+    - `auxiliary/scanner/mysql/mysql_hashdump`
+	    - will get you hashes for passwords of accounts
+    - `auxiliary/scanner/mysql/mysql_login`
+	    - set a password file
+- MSSQL
+	- `auxiliary/scanner/mssql/mssql_login`
+	    - brute force with lists
+	    - `setg` will keep the option on that for the entire time you use the console
+    - `auxiliary/admin/mssql/mssql_enum`
+	    - server information
+    - `auxiliary/admin/mssql/mssql_enum_sql_logins`
+	    - list of logins
+    - `auxiliary/admin/mssql/mssql_exec`
+	    - execute a shell comain
+    - `auxiliary/admin/mssql/mssql_enum_domain_accounts`
+	    - pulls the domain accounts

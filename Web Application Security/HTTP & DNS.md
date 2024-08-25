@@ -1,0 +1,42 @@
+This will also probably be a refresher
+- HTTP
+	- request response protocol
+	- when you make a request, you need to have a request method
+		- GET
+			- fetch a resource
+		- POST
+			- submit data to the server
+		- PUT
+			- update a resource
+		- DELETE
+			- remove a resource
+	- response codes
+		- 1xx = informational
+		- 2xx = successful
+		- 3xx = redirection
+		- 4xx = clent error
+		- 5xx = server error
+		- this is typical, but you can set your own response code if you want
+	- HTTP is stateless
+		- each request is treated as a standalone request
+		- no memory of any previous requests
+			- this is why cookies are used
+- DNS
+	- Domain Name System
+	- hierarchal decentralized naming system for computers, services or any resource that's connected to the internet
+	- translate human readable domains to IPs
+	- "phonebook for the internet"
+	- Top level domains
+		- .com
+		- .gov
+		- .net
+		- .org
+	- Second level domain
+		- the "google" in "google.com"
+	- Subdomain
+		- the "www" of "www.google.com"
+	- DNS Records
+		- many different kinds
+			- A = IPv4
+			- MX = mail server
+			- C = creates an alias for the domain

@@ -1,0 +1,174 @@
+### Enumeration Tools
+- Enumeration
+	- process to identify and scan network ranges and hosts belonging to the target and map out an attack surface
+	- used by both attackers and defenders
+- types of enumeration
+	- Active
+		- connection is made from the attacker to a target and data is transmitted
+	- Passive
+		- no connection is made from the attacker to a target and data collected can be analyzed
+		- network sniffers are passive form of enumeration
+			- wireshark
+			- Zeek or Bro
+				- network analyzer in security onion
+			- p0f
+				- traffic fingerprinting
+				- with a single syn packet, you can find out the OS, browser, uptime
+	- Semi-passive technique
+		- sparse and widely dispersed attempts to connect to a target during recon
+- how do you passive scan on your network as a defender?
+	- you already got access to the network, dummy!
+	- use a packet capture device
+- Open-Source Intelligence (OSINT)
+	- tools that search publicly available information in order to aggregate and search the data
+- Footprinting
+	- tools that map out the layout of a network, typically in terms of IP address usage, routing topology, and DNS namespace
+- Fingerprinting
+	- tools that perform host system detection to map out
+		- open ports
+		- OS type/version
+		- file shares
+		- running services and applications
+		- system update
+		- and other metadata
+- Exam tip ^exam-tip
+	- know the difference between footprinting and fingerprinting
+	- footprinting = network layout
+	- fingerprinting = one target on the network
+### Nmap Discovery Scans
+- Nmap Security Scanner
+	- versatile port scanner used for topology, host, service, and OS discovery and enumeration
+- nmap can do discovery scans which footprint the network
+- basic syntax: `nmap 127.0.0.1`
+	- this will send a TCP packet to 80 and 443
+	- if it’s there, it will scan the 1000 most common ports of the target
+	- not stealthy at all
+- host discovery scan `nmap -sn 127.0.0.1`
+	- only discovers the hosts, no port scanning
+- there’s so many types of scanning in nmap
+	- List Scan `-sL`
+		- lists the IP addresses from the ranges and performs a reverse-DNS query to discover any host names associated with those IPs
+	- TCP SYN ping `-PS 1-1000`
+		- Probes specific ports from the given list using a TCP SYN packet instead of an ICMP packet to conduct the ping
+	- Sparse Scanning `--scan-delay 100`
+		- Issues probes with significant delays to become stealthier and avoid detection by an IDS or IPS
+	- Scan Timing `-Tn`
+		- issues probes with using a timing pattern with n being the pattern to utilize (0 = slowest, 5 = fastest)
+	- TCP Idle Scan `-sI`
+		- stealth method, this scan makes it appear that another machine started the scan to hide the true identity of the machine
+	- Fragmentation `-f `or `–mtu`
+		- technique that splits the TCP header of each probe between multiple IP datagrams to make it hard for an IDS or IPS to detect
+- Discovery scans should have a list of IPs with ports
+- can have the results output to screen or
+	- write to file with `-oN`
+	- XML to file `-oX`
+	- grepable to file `-oG`
+- XML or grepable output can be put into SIEM products
+- exam tip ^exam-tip
+	- don’t gotta memorize them for CySA, but for Pentest you do
+### Nmap Port Scans
+- Service Discovery
+	- minutes to hours to complete
+- `-sS`
+	- half-open scan by sending a SYN packet to identify the port state without sending an ACK packet afterwards
+- `-sT`
+	- does the full three-way handshake
+- `-sN`
+	- Scans by sending a packet with the header bit set to zero (Null Scan)
+- `-sF`
+	- scans by sending an unexpected FIN packet
+- `-sX`
+	- Christmas san, sends a packet with FIN, PSH, and URG flags
+	- Lights up like a christmas tree
+- `-sU`
+	- Scan that sends a UDP packet and waits for a response or timeout
+- `-p`
+	- specify ports
+	- if not used, will scan the default 1000 common ports
+### Nmap Port States
+- Different port states:
+	- Open
+		- host is accepting connections
+	- Closed
+		- host is not accepting connections, responds by sending an RST packet
+	- Filtered
+		- nmap can’t prob the port, usually due to a firewall
+	- Unfiltered
+		- nmap can prob the port, but can’t determine if it’s open or closed
+	- Open|Filtered
+		- nmap can’t determine if it’s open or filtered when doing an UDP or IP protocol scan
+	- Closed|Filtered
+		- nmap can’t tell if a port is closed or filtered when doing TCP idle
+### Nmap Fingerprinting Scans
+- Fingerprinting
+	- a technique to get a list of resources on the network, host or system as a whole to identify potential targets for further attack
+- get a port, probe the hell out of it
+- `-sV`
+	- basic version and info
+- `-A`
+	- Does almost everything
+- Common Platform Enumeration (CPE)
+	- Scheme for identifying hardware devices, operating systems, and applications developed my MITRE
+- Nmap Scripting Engine
+	- scripts to probe stuff in Nmap
+	- Do basically everything with Nmap
+### Using Nmap
+- Jason goes over how to use Nmap
+- Network map:
+- ![[network map.png]]
+- CLI first steps: ping scan.
+	- will give you the hosts
+	- 10.10.10.1 will be the router
+- SYN scan on port 80 for the whole network again
+- SYN Scan on one asset, showing the ports on one asset.
+- Then get `-sV` scans to show versions
+	- Gives versions, go look up vulnerabilities
+	- doesn’t give us the version of the OS
+- do a `-O` for the OS
+	- now we got the OS
+### Hping
+- manipulates and crafts packets
+- spoofing tool that provides a pen tester with the ability to craft network packets to exploit vulnerable firewalls and IDS/IPS
+- does things such as:
+	- host/port detection and firewall testing
+		- Send a SYN or ACK packet to conduct detection and testing
+		- `hping3 -S -p80 -c1 192.168.1.1`
+			- Send 1 SYN packet to port 80, IP 192.168.1.1
+		- `hping3 -A -p80 -c1 192.168.1.1`
+			- Send 1 ACK packet to port 80, IP 192.168.1.1
+	- timestamping
+		- determine the system’s uptime
+		- `hping3 -c2 -s p80 –tcp-timestamp 192.168.1.1`
+			- Send 2 SYN packets to port 80 to determine uptime
+	- traceroute
+		- use arbitrary packet formats such as probing DNS ports using TcP or UDP to perform traces when ICMP is blocked on a network
+	- fragmentation
+		- attempts to evade detection by IDS/IPS and firewalls by sending the fragmented packets across the network for later reassembly
+		- shouldn’t work on most modern systems
+	- DoS
+		- can be used to perform flood-based DoS attacks from randomized source IPs
+### Responder
+- CLI tool used to poison responses to NetBIOS, LLMNR, and MDNS name resolution requests in an attempt to perform a man-in-the-middle attack
+- intercepts those requests and return the attacker’s host IP as the name record
+- can be put into monitoring mode to see if anyone’s trying to poison your name resolution
+### Wireless Assessment Tools
+- Tools used to detect the presence of wireless networks, identify the security type and configuration, and try to exploit any weaknesses in the security to gain unauthorized access to the network
+- to sniff non-unicast wireless traffic on a network, a wireless card must support monitor mode or promiscuous mode
+- Aircrack-ng
+	- a suite of utilities designed for wireless network security testing
+	- four tools inside
+		- `airmon-ng`
+		- `airodump-ng`
+		- `aireplay-ng`
+		- `aircrack-ng`
+	- very effective against WEP networks
+	- use RADIUS authentication, it is a remediation
+- Reaver
+	- CLS tool used to perform brute force attacks against WPS-enabled access points
+	- WPS button - communicates a PIN between devices so you don’t have to enter a password
+	- will attempt to brute force the PIN
+	- PIN is 4x4, so just need to do a 4 combination brute force twice
+	- Enable Rate-limiting for PINs
+	- Always disable WPS
+### Hashcat
+- cracks hashes

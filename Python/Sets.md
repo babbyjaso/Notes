@@ -1,0 +1,27 @@
+- stores multiple values in one variable
+	- `set1 = {"a", "b", "c"}`
+	- Looks like a dictionary, but there's no key:value pair
+	- sets are not ordered, so each run will give a different sequence of variables
+- can't pint indexes of sets because they're in no order
+- can't have duplicates either
+	- `set2 = {"a", "a", "a"}`
+		- prints as `{'a'}`
+		- print(len) as `1`
+- can be any data type
+	- `set3 = {"a", 0, True}`
+- can assign using something outside of the curly brackets
+	- `set4 = set(("b", 1, False))`
+	- you will need the double parenthesis
+- can add things using the usual suspects
+	- `set1.add("d")`
+	- `set3.update(set4)`
+	- `set6 = set4.union(set5)`
+- because sets can't have duplicates, things will combine
+	- we combined `set3` and `set4` into `set3`
+		- combined the `0` and `False` into `0`
+		- combined the `1` and `True` into `True`
+		- this is because they're equal in python's eyes
+- can remove things
+	- `set4.remove(4)`
+	- `set1.pop()`
+		- don't recommend this because it's a random order every time.

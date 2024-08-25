@@ -1,0 +1,135 @@
+### Asset and Change Management
+- We gotta know what’s on our network
+- Asset Tagging
+	- practice of assigning an ID to assets to associate them with entries in an inventory database
+	- could be a barcode or an RFID tag on the device
+	- asset tags correlate with asset records containing vendor documentation, configuration and warranty
+- Change Management
+	- the process through which changes to the configuration of information systems are monitored and controlled, as part of the organization’s overall configuration management efforts
+	- Things to focus on:
+		- Configuration information
+		- Patches installed
+		- Back Records
+		- Incident reports/issues
+	- ensures all changes are planned and controlled to minimize risk of a service disruption
+	- changes are categorized according to their potential impact and level of risk
+		- Major
+		- Significant
+		- Minor
+		- Normal
+- How to request change?: Request for Change (RFC)
+	- Document that lists the reason for a change and the procedures to implement that change
+	- major or significant changes require approval from the Change Advisory Board (CAB)
+- Changes should be accompanied by a rollback or remediation plan
+- so, to implement this change, they will have maintenance windows for authorized downtime
+	- gotta work overnight during these windows
+- Exam tip ^exam-tip
+	- How might you install a patch or change? Change Management
+		- you gonna disrupt everything if you patch something? figure it out.
+	- Don’t Panic
+### Network Architecture
+- Physical Network
+	- cabling, switch ports, router ports and wireless access points that supply cabled and wireless network access and connectivity
+	- gotta find out if someone can get in and intercept your network.
+	- physical security controls are important to protecting your physical network architecture
+- Virtual Private Network (VPN)
+	- secure tunnel created between two endpoints connected via an unsecure network, usually over the internet
+	- Kinds of VPN:
+		- IPSec
+		- Secure Shell (SSH)
+		- Transport Layer Security (TLS)
+	- VPNs use authentication and authorization mechanisms to control access
+	- VPNs good
+	- But beware…the remote computer may be in danger!
+		- also data leak
+- Software-Defined Networking (SDN)
+	- APIs and compatible hardware allowing for programmable network appliance and systems
+	- SDN creates more complex networks due to their size, scope and ability to rapidly change
+	- three planes
+		- Control plane
+			- make decisions about how traffic should be prioritized and secured, and where it should be switched
+		- Data plane
+			- handles the switching and routing of traffic and imposition of access control lists (ACL) for security
+		- Management plane
+			- monitors traffic conditions and network status
+			- use management plane to control the other two
+- Exam tips ^exam-tip
+	- don’t need to know the planes
+	- physical network needs protection too
+### Segmentation
+- different types of segmentations
+- System isolation (air gap)
+	- network isolation that physically separates a network from all other networks.
+	- has management issues
+	- for stuff you don’t want the internet to touch mostly
+- Physical Segmentation
+	- each network segment has its own switch, and only devices connected to that switch can communicate with each other
+	- having your router be the communicator between multiple hubs
+- Virtual Segmentation
+	- Network segmentation that relies on VLANs to create equivalent segmentation that would occur if you used physical switches
+	- the same as above, but virtually
+- Zones
+	- the main unit of a logically segmented network where the security configuration is the same for all hostess within it.
+	- we use Access Control Lists (ACLs) to control who can go in to these zones
+	- will usually zone off things that face the internet, called a Demilitarized Zone (DMZ)
+### Jumpbox
+- the first  2/3 of this is about the DMZ
+- We use a jumpbox to configure our DMZ
+	- hardened server that provides access to other hosts in the DMZ
+- admins connect to the jumpbox, then through that, to the hosts in the DMZ
+- can be physical or virtual, don’t matter.
+	- prefer virtual to blow up an image if it becomes compromised
+- the jumpbox and management workstation should only have the minimum required software to perform their job and be well hardened
+### Virtualization
+- Virtual Desktop Infrastructure (VDI)
+	- virtualization implementation that separates the personal computing environment from a user’s physical computer
+	- the Server performs all the application processing and data storage
+	- some companies completely offload their IT infrastructure to a third-party service company using VDI
+	- but, user has no local processing ability if the server or network is down
+- Containerization
+	- a type of virtualization applied by a host operating system to provision an isolated execution environment for an application
+	- containerization enforces resource separation at the operating system level
+	- ![[containers.png]]
+	- Containers are logically isolated and cannot interface with each other
+	- if the attacker compromises the host OS, they can get into the containers
+		- and I’ve even heard of escaping containers as well
+### Virtualized Infrastructure
+- Virtual Hosts
+	- virtualized computer that allows for the installation and configuration of its own operating system
+	- these also need to be patched and hardened
+	- it’s also super easy to deploy new VMs, but leads to VM Sprawl
+		- an expansion of VMs being provisioned without proper change control procedures
+		- just turn your shit off or bomb it
+- Virtual Networks
+	- virtual hosts are interconnected using virtual switches, router and other virtualized networking equipment as part of the hypervisor
+	- ensure that mapping of these virtual hosts to physical hardware does not expose data or system access to risks
+	- Virtual switches don’t always behave like physical switches and may fail to isolate traffic between hosts adequately
+	- just use different NICs
+- Management interface
+	- management application that is located either on the physical host aht runs the VMs or on a centralized platform that oversees VMs from multiple physical hosts
+	- use separation of duties by having different admins for hypervisor than for the servers and hosts
+	- monitor the host platform for signs of resource exhaustion to prevent a denial of service to hosted VMs
+### Honeypots
+- “The best defense is a good offense”
+- Active defense
+	- the practice of responding to a threat by destroying or deceiving a threat actor’s capabilities
+	- engagement with the threat actor
+	- one of the ways is to let someone into a false part of your network
+- Honeypot
+	- a host set up with the purpose of luring attackers away from the actual network components and/or discovering attack strategies and weaknesses in the security configuration.
+	- watch them work and see their TTPs
+- Honeynet
+	- an entire network setup to entice attackers
+	- often set up by security companies to analyze behavior
+	- all in service to attribute attackers
+- Attribution
+	- identification and publication of an attacker’s methods, techniques, and tactics as useful threat intelligence
+- Annoyance strategies
+	- relies on obfuscation
+		- bogus DNS
+		- web servers with decoy directories
+			- “important” “financial” etc
+		- port triggering and spoofing
+- Hack Back
+	- offensive or counterattacking techniques to identify the attacker and degrade their capabilities.
+	- many legal and reputational implications to consider and mitigate before using active defense strategies

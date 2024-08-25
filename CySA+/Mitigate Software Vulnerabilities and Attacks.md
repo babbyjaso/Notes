@@ -1,0 +1,193 @@
+### SDLC Integration
+- Software Development Lifecycle Integration
+	- Processes of planning, analysis, design, implementation, and maintenance that governs software and systems development.
+- it is important to integrate security controls into each stage of SDLC
+- two methods:
+	- Waterfall method
+		- a software development model where the phases of the SDLC cascade so that each phase will start only when all tasks identified in the previous phase are complete
+		- all things done, then move on to the next.
+		- this is how we have done projects forever
+		- done like a book
+	- Agile Method
+		- a software development model that focuses on iterative and incremental development to account for evolving requirements and expectations
+		- waterfall on a smaller scale?
+		- works quickly, won’t be complete at launch
+		- gives feedback quickly
+- change depending on what your customers want
+- security must be integrated into SDLC
+- use security-targeted frameworks
+	- incorporate threat, vulnerability and risk-related controls within the SDLC
+	- two types:
+		- Security Development Lifecycle (SDL)
+			- MS’s security framework for application development that supports dynamic development processes
+		- OWASP Software Security Assurance Process
+			- Open Web Application Security Project’s security framework for secure application development
+- incorporate into each phase:
+	- Planning
+		- buffer overflow
+	- Requirements
+		- need for security
+	- Design
+		- what controls you’re gonna use
+	- Implementation
+		- source code analysis
+	- Testing
+		- black box testing for vulnerabilities
+	- Deployment
+		- install it and make sure it’s not breaking or bleeding
+	- Maintenance
+		- if it’s breaking or bleeding, well,
+- let’s talk testing:
+	- Black Box Testing
+		- Blind testing
+		- a security analyst receives no privileged information about the software
+	- White Box Testing
+		- full disclosure testing
+		- a security analyst receives privileged information about the software, such as the source code and credentials
+	- Gray Box Testing
+		- a security analyst receives partial disclosure of information about the software
+- Secure coding can make software more secure and save your org more money
+- Establish Secure Coding Best Practices
+	- secure coding standards that define the rules and guidelines for developing secure software systems
+- The Two Orgs: OWASP and SANS
+	- You know who these people are
+- Exam tip ^exam-tip
+	- go to OWASP and look at top 10 lists
+### Execution and Escalation
+- attacks against software code attempt to allow the execution of outside code
+- Arbitrary Code Execution
+	- a vulnerability that allows an attacker to run their own code or a module that exploits such a vulnerability
+- Remote Code Execution
+	- a vuln that allows an attacker to transmit code from a remote host for execution on a target host or a module that exploits that vuln
+- Privilege Escalation
+	- occurs when a user accesses or modifies specific resources that they are not entitled to normally access
+	- attempt to gain admin or root level permissions
+	- Vertical privilege escalation
+		- lower user to a higher user
+	- horizontal privilege escalation
+		- accessing stuff they’re not allowed to, but with the same level of permissions
+		- user to user
+- Rootkits
+	- class of malware that modifies system files to conceal its presence
+	- will try to get into a Ring 0 permissions
+	- Kernel mode
+		- able to gain complete control over the system
+	- user mode
+		- might have admin privileges but uses OS features for persistence
+### Overflow Attacks
+- Buffer Overflow
+	- an attack in which data goes past the boundary of the destination buffer and begins to corrupt adjacent memory
+	- Buffer
+		- a temporary storage area that a program uses to store data
+		- it’s like overflowing a glass of water
+	- over 85% of data breaches were caused by a buffer overflow
+	- Let’s get a bit more technical
+	- Stack
+		- reserved area of memory where the program saves the return address when a function call instruction is received
+	- will change where the callback is so the code you overflowed into where the return address is will be executed.
+	- [[Host-related IOCs#^nop-sled|“Smashing the Stack”]]
+		- occurs when an attacker fills up the buffer with [[Host-related IOCs#^nop|NOP]] so that the return address may hit a NOP and continue on until it finds the attacker’s code to run
+		- fill it up with nothing, make the program find your code for you
+- Heap Overflow
+	- a software vulnerability where input is allowed to overwrite memory locations within the area of a process’ memory allocation (the heap) used to store dynamically-sized variable
+	- overwrite the variables and possibly allow arbitrary code execution
+	- attacking large segments of memory
+- Integer Overflow
+	- an attack in which a computed result is too large to fit in its assigned storage space, which may lead to creasing or data corruption, and may trigger a buffer overflow
+	- a failed buffer overflow?
+	- leads to a buffer overflow
+	- What is an integer? a whole number
+	- all integer storages have a cap, and if you put in a number that’s too big, it’ll overflow into the next storage
+	- mostly used as a staging device for different attacks
+- How to prevent and protect
+	- Pick the right programing language
+		- String copy `strcpy
+			- copies one section of data to another, but doesn’t check it
+			- used in C and C++
+			- Exam tip ^exam-tip
+		- Java, Python, and PHP can detect overflow conditions and halt program execution
+		- …but we’re not rewriting everything in these codes.
+	- Address Space Layout Randomization (ASLR)
+		- a technique that randomizes where components in a running application are placed in memory to protect against buffer overflows.
+		- can’t build a script to point to what to overflow and then the code after, because it’s random
+	- run programs with the least privilege to prevent overflow attacks
+### Race Conditions
+- Software vulnerability when the resulting outcome from execution processes is directly dependent on the order and timing of certain events, and those events fail to execute in the order and timing intended by the developer.
+	- the computer tries to race itself
+	- when an attacker tries to run their thing before you can run yours
+- race condition vulnerability is found where multiple threads are attempting to write a variable or object at the same memory location
+- Race conditions are difficult to detect and mitigate.
+- Happens one of two ways:
+- Dereferencing
+	- A software vulnerability that occurs when the code attempts to remove the relationship between a pointer and the thing it points to
+	- breaking apart the pointer and the thing it’s pointing to
+- Time of Check to Time of Use (TOCTTOU)
+	- The Potential vulnerability that occurs when there is a change between when an app checked a resource and when the app used the resource
+	- makes the change invalidate the legitimate use.
+	- How do we mitigate this:
+		- Develop applications to not process things sequentially if possible
+			- do things in parallel if you can, not sequentially
+		- Implement a locking mechanism to provide app with exclusive access
+			- lock things for a time limit so no one else can make changes
+			- lock out files on Databases
+- Dirty COW
+	- COW stands for Copy On Write
+	- Linux vuln, low level privilege
+- can also be used against databases and file systems
+### Improper Error Handling
+- errors could be caused by invalid user input, a loss of network connectivity or another server/process failing
+- Error Handler
+	- coding methods to anticipate and deal with exceptions thrown during execution of a process
+	- prevents the application from failing in a way that allows the attacker to execute code or perform some sort of injection attack
+- Default error messages could leak sensitive information
+	- sue custom error handlers to prevent accidental leakage
+### Design Vulnerabilities
+- Vulnerabilities often arise from the general design of the software code
+- Three types:
+- Insecure Components
+	- Any code that is used or invoked outside the main program development process
+	- such as:
+		- Code Reuse
+		- Third-party Library
+		- Software Development Kit (SDK)
+			- the last two being especially bad, seeing as how they could be thought good but actually bad
+- Insufficient Logging and Monitoring
+	- Any program that does not properly record or log detailed enough information for an analyst to perform their job
+	- Logging and monitoring must support your use case and answer who, what, when where, and how
+- Weak or Default Configurations
+	- any program that uses ineffective credentials or configurations, or one in which the defaults have not been changed for security
+	- many applications choose to simply run as root or as a local admin
+		- use least privileges always
+		- Razer mouse bug last year.
+	- permission may be too permissive on files or directories due to weak configurations
+- Best Practice
+	- utilize scripted installations and baseline configuration templates to secure applications during installation
+### Platform Best Practices
+- Client/Server Applications
+	- An application where part of the application is a client software program that is installed and run on separate hardware to the server application code and interacts with the server over a network
+	- Attacks can be directed at the local client code, at the server application, or at the network channel between
+	- Server-side code should always utilize input validation
+		- Exam tip ^exam-tip
+			- will be on the exam, have a 75% chance of it being correct
+- Web Applications
+	- an application which uses a generic web browser as a client and standard network protocols (HTTP/HTTPS) to communicate with the server
+	- User a multi-tier architecture where the server part is split between application logic and data storage and retrieval
+		- front-end: what you see
+		- back-end: the database
+	- modern web applications also user microservices and serverless designs
+- Mobile Applications
+	- an application which is deployed and run on a smartphone, tablet, or other mobile operating systems
+	- often more susceptible to the unsecure use of authentication, authorization, and confidentiality controls
+- Embedded Applications
+	- an application which is designed to run on a dedicated hardware platform
+	- have traditionally not focused on security during development and deployment
+		- smart TVs, etc
+- Firmware
+	- Generally considered a type of embedded application that contains the block of embedded code that runs first at startup, performing “low-level” input/output device functions, plus bootstrapping of an OS or application.
+	- something that starts right at the beginning
+	- has complete control over the hardware and system memory, thereby making it a lucrative target
+		- rootkits, etc
+- [[Specialized Technology#^soc|System-on-Chip (SoC)]] ^soc
+	- embedded application commonly used in mobile devices which contains integrated CPU, memory, graphics, audio, network, storage controllers, and software on one chip
+	- SoC manufactures often reuse code by selecting IP blocks for certain functions made up of FPGAs
+		- IP block: set of configurations that uses SoC logic gates to achieve a function

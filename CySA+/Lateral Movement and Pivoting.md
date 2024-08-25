@@ -1,0 +1,75 @@
+### Pass the Hash
+- Network attack where the attacker steals hashed user credentials and uses them as-is to try and authenticate to the same network the credentials originated on
+- How it works:
+	- Log on
+	- DC verifies user
+	- user logs in again, but credentials are cached in SAM
+	- attacker gets the hash from the SAM and then uses those credentials to log on to the network.
+- Because of dumping the SAM, you can usually get local admin credentials with the user.
+- Most of this is done by Mimikatz
+	- Mimikatz scans system memory for cached passwords used by lsass
+	- Built in to Metasploit, it’s very popular
+- Mitigation:
+	- DC admin accounts only used to logon to DCs, not to workstations.
+	- extremely hard to detect this activity, because it can be authorized activity.
+	- most AV software will block tools that allow pass the hash attack
+	- Restrict and protect high privileged domain accounts
+	- restrict and protect local accounts with admin privileges
+	- restrict inbound traffic using windows firewall to all workstations
+- Let’s detect in real time: maybe
+	- Win event 4624: account successfully logged on
+	- Win event 4625: account failed to log on
+### Golden Ticket
+- pass the hash is good for a workstation, but the real money is in Kerberos tickets
+- Golden Ticket: Kerberos ticket that can grant other tickets in an AD environment
+	- go anywhere, see anything
+	- also grant admin privileges
+- Kerberos review:
+	- krbtgt hash: KeRBeros Ticket Granting Ticket
+		- trust anchor of AD domain which functions like a private key of a root certificate authority and generates Ticket Granting Tickets that are used by users to access services within Kerberos
+		- request to kerberos, processed in the Key Distribution Center
+		- given Ticket Granting Ticket encrypted using user’s password as key
+		- if the password is good, ticket is decrypted, have a good time.
+		- this ticket will expire, and you can get more tickets for more services
+		- compromise the TGT hash, you can make your own tickets to go anywhere do anything.
+- The Attack
+	- Attacker accesses NTDS.DIT
+		- this is the AD data store, stores TGT hash, admin hashes
+	- Dump NTDS.DIT
+	- Response team resets credentials for users, but can forget the krbtgt
+	- Attacker crafts golden ticket
+	- Assumes admin rights
+	- Compromise DC, etc.
+- change the krbtgt account password regularly
+- change the password twice in a short period of time to ensure no golden tickets are being used.
+- old golden ticket programs did not include a domain name field making them easy to detected in the logs, but newer ones have added this field.
+	- not as easy IOC, but still look for it.
+### Later Movement
+- attackers can use remote access to move from computer to computer
+- mostly do this by guessing passwords
+- attackers use the same tools as admins do:
+	- Remote Access Services
+		- any combination of hardware and software to enable the remote access tools or information that typically reside on a network of IT devices
+		- access a computer from a distance
+			- VPN, SSH, Telnet, etc.
+	- WMIC
+		- Windows Management instrumentation Command-Line
+		- provides users with a terminal interface and enables admins to run scripts to manage those computers
+	- PsExec
+		- tool developed as an alternative to telnet and other remote access services which utilizes the Windows SYSTEM account for privilege escalation
+		- a part of sysinternals
+	- PowerShell
+		- task automation and configuration management framework from MS, consisting of a command-line shell and the associated scripting language
+		- popular exploit kit: PowerShell Empire
+			- pre-written stuff
+### Pivoting
+- Pivoting is not lateral movement
+	- when an attacker uses a compromised host as a platform from which to spread an attack to other points in the network
+	- when you have a point to attack the network from on the inside
+	- used interchangeably by pros, but the exam treats them differently
+- Port Forwarding
+	- The attacker uses a host as a pivot and is then able to access one of its open TCP/IP ports to send traffic from this port to a port of a host on a different subnet
+	- basically using ports on your pivot machine to forward ports through another machine to get access an even deeper machine
+	- ![[port forwarding.png]]
+	- Super easy to do on SSH by using the -D flag which sets up a local proxy and port forwarding
+	- attackers can chain proxy servers together in order to continue pivoting from host to host until they reach a mission critical host or server

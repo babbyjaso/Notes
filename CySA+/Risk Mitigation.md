@@ -1,0 +1,140 @@
+### Risk Identification Process
+- Enterprise Risk Management (ERM)
+	- comprehensive process of evaluating, measuring, and mitigating the many risks that pervade an organization
+- why is this adopted by orgs?
+	- we gotta control the risk.
+	- keep data confidential
+	- avoid financial losses
+	- avoid legal issues
+	- maintain positive brand image
+	- ensuring COOP (continuity of operations planned)
+	- establishing trust and mitigating liability
+	- meeting stakeholder’s objectives
+		- you as an analyst are not going to make decisions, the stakeholders will
+	- go to guide: NIST 800-39
+- [[Frameworks, Policies, Procedures|Frameworks]]
+	- Establish a strategic risk management framework that is supported by decision makers at the top tier of the organization
+- Assess
+	- identify and prioritize business processes/workflow
+- Respond
+	- mitigate each risk factor through the deployment of managerial, operational, and technical security controls
+- Monitor
+	- evaluate the effectiveness of risk response measures and identify changes that could affect risk management processes
+- identification takes place by evaluating threats, identifying vulnerabilities, and assessing the probability of an event affecting an asset/process
+- how do we measure risk?
+	- Quantitative methods
+	- Qualitative methods
+### Conducting an Assessment
+- most business assets have a specific value associated with them
+	- assets typically are valued according to the cost created by their loss or damage
+- three main categories you consider
+	- Business continuity
+		- loss associated with no longer being able to fulfill contracts and orders due to the breakdown of critical systems
+	- legal
+		- loss created by organizational liability due to prosecution or damages (criminal/civil)
+	- reputational
+		- loss created by negative publicity and the consequential loss of market position or consumer trust
+- system assessments
+	- the systematic identification of critical systems by compiling an inventory of the business process and the tangible and intangible assets and resources that support those processes
+		- such as:
+			- People
+			- Tangible assets
+			- Intangible assets
+				- ideas, brand, etc.
+		- procedures
+	- how do these impact the various functions?
+- Mission Essential Function (MEF)
+	- business or organizational activity that is too critical to be deferred for anything more than a few hours
+- Asset/Inventory Tracking
+	- the use of a software or hardware solution to track and manage any assets within an organization
+	- typically done in an asset management database
+		- various metadata about one asset
+### Risk Calculation
+- Risk = Probability x Magnitude
+	- Probability
+		- chance or likelihood of a threat being realized
+		- typically expressed as a percentage
+	- Magnitude
+		- the impact of a successful exploit or risk event
+		- how severe will this thing be
+		- typically expressed as a monetary value
+- Quantitative
+	- risk analysis method that is based on assigning concrete values to factors
+	- AV x EF = SLE
+		- Asset Value (AV)
+		- Exposure Factor (EF)
+		- Single Loss Expectancy (SLE)
+		- only provides the value for a single loss
+	- ALE Annual Loss Expectancy
+		- the cost of a given risk on an annual basis based on the single loss expectancy
+		- SLE x ARO = ALE
+			- Annual Rate of Occurrence (ALO)
+	- Executives and managers love this because it’s a dollar value
+	- only issue is assigning value to things
+	- sometimes the annual loss is cheaper than fixing the problem
+- Qualitative
+	- a risk analysis method that uses opinions and reasoning to measure the likelihood and impact of risk
+	- ![[risk matrix.png]]
+
+		- Traffic Light System
+- Semi-quantitative
+	- risk analysis method that uses a mixture of concrete values with opinions and reasoning to measure the likelihood and impact of risk
+	- How much is the employee morale worth in dollars?
+	- How much is your company’s reputation worth in dollars?
+	- How much does it cost if your company’s network is down between 2 am and 4 am on july 22?
+	- attempts to make a middle ground between qualitative and quantitative
+### Business Impact Analysis
+- a systematic activity that identifies organizational risks and determines their effect on ongoing, mission critical operations
+- governed by metrics that express system availability
+	- Maximum Tolerable Downtime (MTD)
+		- longest period of time without a business can be inoperable without causing irrevocable business failure
+		- how long can you last before you go bankrupt?
+		- each process can have it’s own MTD
+			- minutes to hours for critical functions
+			- 24 hours for urgent functions
+			- 7 days for normal functions
+		- sets upper limit on the recovery time that system and asset owners need to resume operations
+	- Recovery Time Objective (RTO)
+		- the length of time it takes after an event to resume normal business operations and activities
+		- time it takes to get minimum operations going
+	- Work Recovery Time (WRT)
+		- the length of time in addition to the RTO of individual systems to perform reintegration and testing of a restored or upgraded system following an event
+		- time it takes to get systems back up
+	- Recovery Point Objective (RPO)
+		- longest period of time that an organization can tolerate lost data being unrecoverable
+		- how often do you do your backups?
+		- how long can you be without your data
+### Risk Prioritization
+- Risk mitigation
+	- Risk response that reduces a risk to fit within an orgs risk appetite
+	- risk deterrence or risk reduction: controls that can either make a risk incident less likely or less costly
+- Risk avoidance
+	- risk response that involves ceasing an activity that presents risk
+		- more often than not, this is not a solution
+- Risk transference
+	- risk response that involves moving or sharing the responsibility of risk to another entity
+		- buying insurance for your car, transfers financial risk to another entity
+		- there is cyber insurance or outsource service
+		- transferring liability
+		- can’t transfer reputation damage
+- Risk acceptance
+	- risk response that involves determining that a risk is within the organization’s risk appetite and no countermeasures other than ongoing monitoring will be needed
+- Risk Appetite
+	- how much risk is your org willing to accept?
+- Exam tip ^exam-tip
+	- mitigation = adding controls
+	- avoidance = changing plans
+	- transference = insurance
+	- acceptance = low risk
+- Return on Security Investment
+	- a metric to calculate whether a security control is worth the cost of deploying and maintaining it
+	- ((ALE - ALE^m)-C)/C = ROSI
+		- Annual Loss Expectancy (ALE)
+		- Mitigation (m)
+		- minus Cost (C)
+		- divided by the Cost
+- can’t make risk go away completely
+### Communicating Risk
+- translate things for executives by turning it into dollar value
+### Training and Exercises
+- table top exercises, etc

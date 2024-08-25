@@ -1,0 +1,29 @@
+eJPT refresher
+- aka "Directory Busting"
+	- bustin makes me feel good
+- If you encounter a default webpage, you should report that
+	- poor hygine
+	- "what else is running by default?"
+- Tools
+	- ffuf ^ffuf
+		- directory brute forcing tool
+		- Fuzz Faster U Fool
+		- Option flags
+			- -w for wordlist
+				- /usrshare/wordlists/ for your wordlists
+				- add ":FUZZ" at the end to confirm the wordlist
+			- -u for URL
+				- add "/FUZZ" to confirm that this is the URL/IP
+			- spits out information as it's going through it.
+			- gotta scroll through it and look for codes
+				- that sucks, I'd rather user dirbuster lol
+			- -recursion for recursive directories
+			- -recursion-depth just in case it's a really deep scan
+			- -fc to filter out response codes
+	- dirb ^dirb
+		- uses it's own wordist
+		- will scan recursively by default
+			- can turn off with -r
+	- dirbuster ^dirbuster
+		- GUI version of dirb
+		- can change the amount of threads and what file extensions you're looking for

@@ -1,0 +1,48 @@
+yay burp!
+i love burp it's so cool
+- you're gonna have to set up your proxy listener so that the traffic routes through Burp
+	- foxy proxy
+		- route to 127.0.0.1
+		- port 8080
+		- check it's going through burp with "http://burp"
+	- getting the certificate to have it be legitimate.
+		- on the burp check, download the CA Certificate
+		- settings > privacy and security > View Certificates...
+			- import a certificate
+			- put in the one you just downloaded
+		- be sure to trust the certificate
+		- now it won't be bugging you when you turn on intercept
+- Target tab
+	- tracks everything that's going out
+	- navigating to your website will also show what technologies probably because of api stuff
+	- we can create scopes to not send
+		- this will give us a filter that target will follow
+		- Heath likes "advance scope control"
+			- this will give us more host and IP range with any protocol
+			- so we get all the subdomains as well as the top domain
+	- go in, click around, see what comes up on the target tab for burp
+		- what is this website and why is it working this way?
+		- Business Logic ^business-logic
+- Proxy tab
+	- we can also filter by scope
+		- don't wanna be hasty, because we wanna get a lay of the land
+		- What is normal?
+- Repeater
+	- you can forward requests to the repeater which repeats request, which you can make small tweaks with each request
+- Intruder
+	- attack times!
+	- start up intercept and then send it to intruder
+	- will give you a dropdown of attack types for the website
+	- this is how you can brute force a login if you can
+	- go check out the attack type dropdown
+	- can grep results that you get back from a wordlist from and intruder attack
+- Decoder
+	- Can encode or decode to make it easier to paste your requests
+- Comparer
+	- Compares whatever you paste in the two boxes
+- Extensions
+	- community extensions!
+	- Heath recommends Logger++
+- Pro addition:
+	- passive vuln scanning
+	- crawling

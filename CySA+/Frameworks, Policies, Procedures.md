@@ -1,0 +1,113 @@
+### Enterprise Security Architecture
+- ITSM (Information Technology Service Management
+- Framework-based governance
+	- seeks to mitigate the risks that are associated with IT service delivery
+- Enterprise Security Architecture (ESA)
+	- framework for defining the baseline, goals and methods used to secure a business
+	- for example:
+		- Policies
+		- Checklists
+		- Activities
+		- Technologies
+	- Frameworks provide an externally verifiable statement of regulatory compliance
+- Lots of different frameworks for the industry
+	- ITIL
+	- COBIT
+	- TOGAF
+	- ISO 20000
+	- ISO 27001
+	- PCI DSS
+- Exam tip ^exam-tip
+	- don’t need the details, just the names
+### Prescriptive Frameworks
+- A framework that stipulates control selection and deployment
+- usually driven by regulatory compliance
+- Maturity Model
+	- component of an ESA framework that is used to assess the formality and optimization of security control selection and usage and address any gaps
+	- grading of your ESA
+	- Tier 1 typically reactive, not proactive
+	- Common Model:
+	- ![[framework model.png]]
+	- helps review your org against expected goals and determine the level of risk the org is exposed to based on it
+	- you don’t have to be level 5
+		- might cost too much
+### Risk-based Frameworks
+- another type of framework
+- Prescriptive frameworks can make it difficult for the framework to keep pace with a continually evolving threat landscape
+	- Sometimes, the noise drowns out the real threats.
+- Risk-based Framework
+	- A Framework that uses risk assessment to prioritize security control selection and investment
+- risk-based frameworks can allow businesses to develop their own way of doing things while minimizing risk
+- NIST Cybersecurity Framework
+	- risk-based framework focused on IT security over IT service provision
+	- Framework Core
+		- Identifies five cybersecurity functions and each function can be divided into categories and sub categories
+		- the functions:
+			- Identify
+			- Protect
+			- Detect
+			- Respond
+			- Recover
+	- Implementation Tiers
+		- Assesses how closely core functions are integrated with the organization’s overall risk management process and each tier is classed as:
+			- Partial
+			- Risk Informed
+			- Repeatable
+			- Adaptive
+		- it’s a scale from partial to adaptive
+	- Framework Profiles
+		- used the supply statements of current cybersecurity outcomes and target cybersecurity outcomes to identify investments that will be most productive in closing the gap in cybersecurity capabilities shown by comparison of the current and target profiles
+		- look at the org, get a baseline in terms of the framework, invest if you want to get higher.
+### Audits and Assessments
+- Quality Control and Quality Assurance
+	- Quality Control (QC)
+		- the process of determining whether a system is free from defects or deficiencies
+	- Quality Assurance (QA)
+		- processes that analyze what constitutes quality and how it can be measured and checked
+	- QA influences QC
+		- Takes the form of Verification and Validation (V&V)
+- Verification and Validation
+	- Verification
+		- Compliance testing process process to ensure that the security system meets the requirements of a framework or regulatory environment, or that a product or system meets its design goals
+		- a form of QC in the digital world
+	- Validation
+		- process of determining whether the security system is fit for purpose
+		- Has this been installed correctly? does it do what it’s meant to do?
+- Assessments and Evaluations
+	- Assessment
+		- The process of testing the subject against a checklist of requirements in a highly structured way for measurement against an absolute standard
+		- key: absolute standard
+	- Evaluation
+		- less methodical process of testing that is aimed at examining outcomes or proving usefulness of a subject being tested
+	- evaluation more likely comparative measurements
+		- more of a judgment call, less of a checklist
+- Audits
+	- a more rigid process than assessments or evaluations, in which the auditor compares the organization against a predefined baseline to identify areas that require remediation
+	- required in regulated industries
+	- “everyone needs to meet this standard”
+- Scheduled Reviews and Continual Improvement
+	- Scheduled Reviews
+		- Similar to a lessons learned review, except it occurs at a regular interval, such as quarterly or annually
+		- very important and should consider
+			- major incidents
+			- trends and analysis
+			- changes and additions
+			- progress made during previous period
+	- Continual improvement
+	- process of making small, incremental gains to products and services by identifying defects and inefficiencies for further refinement
+	- breaking down the small changes over time
+		- 6sigma method
+### Continuous Monitoring
+- technique of constantly evaluating an environment for changes so that new risks may be more quickly detected and business operations improved upon
+- ongoing effort to obtain information vital in managing risk within the organization
+- gives you better:
+	- situational awareness
+	- routine audits
+	- real-time analysis
+- can help transform a reactive process into a proactive one
+- don’t rely on badly defined metrics.
+- an effective implementation and maintenance of a continuous monitoring capability is complex and time-consuming
+	- do you need it? how many hours?
+	- also why Splunk engineers get paid a lot.
+- Continuous Diagnostics and Mitigation (CDM)
+	- provides us government agencies and departments with capabilities and tools to identify cybersecurity risks on an ongoing basis, prioritize these risks based upon potential impacts, and enable cybersecurity personnel to mitigate the most significant problems

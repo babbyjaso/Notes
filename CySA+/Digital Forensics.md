@@ -1,0 +1,329 @@
+### Digital Forensic Analysts
+- gathering and submitting computer evidence to trial and interpreting that evidence by providing expert analysis
+- lots of different titles
+	- combination of “Data” or “computer” and “detective” or “examiner”
+- Special tools to recover systems, memory and storage
+- You can also be asked to do more than that (bullshit)
+	- Planning IT systems and processes
+	- Investigating and reconstructing incidents
+	- Investigate if crimes occurred
+	- Collect and protect evidence (hashing)
+	- determine if data was exposed
+	- Develop processes and tools
+	- support ongoing audits
+### Forensics Procedures
+- everything uses written procedures
+	- ensures that personnel handle forensics properly, effectively and in compliance with regulations
+- 4 main areas
+	- Identification
+		- ensures scene is safe
+		- secure the scene
+		- keep evidence clean
+		- scope of evidence to be collected
+	- Collection
+		- Authorization to collect evidence
+		- Document evidence
+			- MAKE COPIES
+		- prove the integrity of evidence as it’s collected
+	- Analysis
+		- Create copy
+		- Hash
+		- use repeatable methods and tools for analysis
+		- there’s a checklist
+	- Reporting
+		- Create report of methods and tools
+		- present detailed findings and conclusions
+- you might go to court in this line of work.
+	- ensure you do everything to the letter and have the confidence in your conclusion based on your analysis.
+- Legal Hold
+	- process designed to preserve all relevant information when litigation is reasonably expected to occur
+		- make sure we don’t destroy evidence when a lawsuit is gonna happen.
+	- not limited to evidence on the scene, can also include your machine/server.
+		- make sure you have backups of that server, because you won’t get a chance to make one.
+- Always have a POC for legal issues to talk to law enforcement.
+- Ethics
+	- we gotta have ethics
+	- Analysis must be performed without bias.
+	- Analysis methods must be repeatable by third parties.
+	- Evidence must not be changed or manipulated
+		- MAKE COPIES
+	- Defense attorneys will try to use any deviation of these ethics to dismiss your findings
+### Work Product Retention
+- Contractual method of retaining forensics investigators so that their analysis is protected from disclosure by the work product doctrine
+- Principles of **Discovery** and **Disclosure** govern the exchange of evidence between prosecution and defense in a civil or criminal trial
+	- sharing evidence for a case is wonky with digital assets.
+	- you only share the copy of the image of the HDD
+- An attorney may retain experts to perform the analysis
+	- so, they can also share your analysis, but at their discretion.
+- Work product doctrine limit contact with the company’s CSIRT team and they may not assist in the analysis.
+	- Keep the analysis separate if you are being contracted.
+- Ensure the contract is between the attorney and the forensic analyst
+	- not the firm, the attorney
+### Data Acquisition
+- The method and tools used to create a forensically sound copy of data from a source device such as system memory or a hard disk
+	- Do I have the right to search or seize this legally?
+		- Bring your own device makes this a headache.
+	- you can lose some evidence when you shut down or turn off a computer
+- Some data can only be collected when it is shutdown
+- Keep the order of volatility in mind when collecting evidence.
+	- CPU registers and cache memory
+	- RAM, routing tables, ARP cache, Process table, temporary swap files
+	- Persistent mass storage
+		- HDD
+		- SDD
+	- Flash drive
+	- Remote logging and monitoring data
+	- Physical configuration and network topology
+	- Archival media
+- Windows registry is on the HDD, HKLM and Hardware registry is stored in memory
+	- do a memory dump first
+### Forensics Tools
+- Digital Forensics Kit
+	- kit containing the software and hardware tools required to acquire an analyze evidence from system memory dumps and mass storage file systems
+- Software is designed to assist in collection and analysis
+- Big three
+	- EnCase
+		- case management software
+		- created by Guidance Software
+		- built-in pathways/workflow templates that show the key steps
+		- runs on Windows
+		- Timeline generation, etc
+	- The Forensic Toolkit (FTK)
+		- Forensics investigation suite
+		- created by AccessData
+		- runs on WinServ or server clusters
+			- faster searching and indexing when importing evidence
+	- The Sleuth Kit
+		- Open source forensics collection
+		- CLI and programming libraries
+		- interfaces with Autopsy as a GUI
+	- They all look the same lol
+- Which should I use?????
+	- whatever your employer will give you
+- digital forensics workstations are beeg and pworefulll
+- Needs access to a disk array subsystem or storage area network
+	- images are HUEG
+- Any and all connections you can think of
+	- gotta plug in anything and everything
+- ALWAYS DO ANALYSIS ON THE COPY, NOT THE ORIGINAL
+	- Image the drive, copy the image, now begin
+- KEEP THESE BOYS OFF THE NET
+### Memory Acquisition
+- Gotta get this stuff quick
+- System Memory Image Acquisition
+	- creates an image of the system memory that can be analyzed for
+		- running processes
+		- contents of temp file systems
+		- registry data
+		- network connections
+		- cryptographic keys
+		- and much more!!
+- The Four Ways
+	- Live acquisition
+		- Captures the contents of memory while the computer is running
+		- uses special hardware or software
+		- needs to be pre installed because it needs some serious kernel access
+		- typical programs
+			- Memoryze - FireEye
+			- F-Response - TACTICAL
+		- Just a snapshot of a constantly changing system
+	- Crash dump
+		- Memory is written to a dump file when windows crashes at the kernel level
+		- can’t write all the memory because there’s so much to do in a short time
+		- will get a mini dump file with the highlights
+	- Hibernation file
+		- file that is written to the disk when the workstation is put to sleep
+		- some malware can detect sleep state, so you might not find it in the hibernation file
+	- Pagefile
+		- stores pages of memory in use that exceed the capacity of the host’s physical RAM modules
+			- file that acts as a queue for the memory because you don’t have enough.
+		- written to the HDD, but what’s on there stays there
+		- can be random when pulling stuff.
+- Oh, the things you will find!
+	- Processes
+	- Password hashes
+	- Cryptographic keys
+	- Registry keys
+	- Cached files
+	- Strings from open files
+### Disk Image Acquisition
+- Process that creates an image file of the system’s disks that can be analyzed to identify current, deleted, and hidden files on a disk
+- Disk doesn’t matter, as long as it’s digital and has stuff on it
+- The Three Ways:
+	- Live acquisition
+		- capture the contents of the disk drive while the computer is still running
+			- If a drive is encrypted, but it’s logged in
+		- Contents of the drive could change during acquisition
+	- Static acquisition by shutting down
+		- Computer is shut down through the OS and then the disk is acquired
+		- Some malware can detect the shutdown and do anti-forensics
+	- Static acquisition by pulling the plug
+		- Takes the system power and removes it
+		- can bypass some of the anti-forensics activities, but you risk corrupting the data
+	- Which should I do????
+		- You can do a live and then a shutdown/plug
+- Types of acquisition:
+	- Physical
+		- bit-by-bit copy of a disk including deleted or hidden data
+			- gets everything, but takes a while
+	- Logical
+		- copies files and folders using the file manager
+			- gets some of the things, but is quick
+- File deletion:
+	- just because you delete it, it’s not gone.
+	- you’re just deleting a link to the file, essentially.
+- Write blockers:
+	- tool used to prevent the capture or analysis device or workstation from changing data on a target disk or media
+	- can be hardware or software based
+		- forensics professionals almost always use hardware
+		- little usb plugin that ensures that nothing is going back to the usb media you plug in
+- also popular: dedicated drive imagers
+- Imaging utilities
+	- software that conducts the disk imaging of a target
+	- lots of these will hash it as it acquires it
+	- different file formats:
+		- .e01
+		- .aff
+		- .dd
+		- etc.
+		- e01 and aff can store metadata about the image (Hash, etc.)
+- dd
+	- unix command that performs disk image acquisition
+	- `if` input file
+	- `of` output file
+	- dd if=target of=destination.dd
+- if acquiring a virtual hard drive, those already are in a virtual image format
+	- vmdk (vmware)
+	- vhd/vhdx (hyper-v)
+	- vdi (virtualbox)
+### Hashing
+- Hash
+	- function that converts an arbitrary length string input to a fixed length string output
+- hash examples
+	- SHA (Secure Hash Algorithm)
+		- Sha1 has a 160 bit hash digest
+		- SHA2 uses 256 or 512 bit
+	- MD5 (message digest algorithm
+		- 128 bit hash digest
+		- should only be used a second-factor
+		- prone to collisions
+- What can make these hash values?
+	- certutil (Built-in Windows command)
+	- fciv (File Checksum Integrity Verifier
+	- md5sum
+	- sha1sum
+	- sha256sum
+	- sha512sum
+- What are we using it for?
+	- digital fingerprint
+	- use to prove integrity of the data
+- FIM (File Integrity Monitoring)
+	- ensures that the files has not been tampered with
+### Timeline Generation
+- Timeline
+	- Tool that shows the sequence of file system events within a source image in a graphical format
+	- graphically depict it to help
+	- builds out who touched what, when
+	- time is important
+- Backup your timeline with a good report
+- Answer a lot of different questions with your report
+	- How was access to the system obtained?
+	- What tools have been installed?
+	- What changes to the files were made?
+	- What data has been retrieved?
+	- Was the data exfiltrated?
+- Many tools can make a timeline based on evidence
+	- building a timeline in a graphical format
+- if you don’t have a built in tool, just make a spreadsheet
+### Carving
+- Carving out data that’s been “deleted”
+- How a hard drive works:
+	- divided into sectors of either 512 bytes or 4096 bytes
+- Block/Cluster
+	- smallest unit the file system can address
+	- default to 4096 bytes
+	- if your sectors are made of 512 bytes, you just have multiple sectors for one Block
+- takes a file and breaks it apart and can put it in different places on the HDD
+- Master File Table (MFT)
+	- table that contains metadata with the location of each file in terms of blocks/clusters for disks formatted as NTFS
+	- FAT uses File Allocation Table
+- Deleting a file just erases the metadata from the MFT saying where the Blocks of your file are.
+	- Converts this new space to free (slack) space
+- File Carving
+	- Extracting data from a computer when that data has no associated file system metadata
+	- you can piece together data fragments from slack space to reconstruct deleted files
+- All programs can perform this carving
+- Scalpel
+	- Open source command line tool that is part of the Sleuth Kit that is used to conduct file carving in Linux and Windows
+	- Autopsy uses this to recover the files
+### Chain of Custody
+- Evidence concept
+- Record of evidence history from collection to presentation in court to disposal
+	- everything that happens to this piece of evidence ever.
+- Be sure you put your drives in a special ESD proof bag
+	- also faraday bags
+- Criminal cases or internal audits can take forever to resolve
+	- Gotta keep the evidence the entire lifespan of the case
+- And holy crap that can become a lot of data
+- Also need a way to organize it
+	- Metadata comes in handy
+	- What it is, short description, `yyyy-mm-dd:hh:mm`
+- Also need a place to lock it up
+### Virtualization Forensics ^virtualization-forensics
+- virtualization provides many security challenges
+		- process and memory analysis
+		- can be performed by VM introspection or analyzing save state files
+		- VM Introspection (VMI)
+			- tools in the hypervisor that retrieves pages of memory for analysis
+		- use this to extract information from the memory
+		- Saved state files
+			- suspended VM memory files
+	- Persistent data acquisition
+		- acquiring data from persistent devices like HDDs and mass storage devices to an image format
+		- if it’s virtual, there’s no physical HDD to make an image of
+		- Still need to follow forensic procedures
+		- thankfully it’s just a file on the system
+	- File-carving-deleted vm disk images
+		- these VMs use proprietary file systems, which can make it difficult
+		- reminder: file carving is used to reconstruct files that have been fragmented across host system
+	- lost system logs
+		- VMs are optimized, so they destroy logs when the machine is destroyed
+		- configure VMs to log to a remote logging server
+### Mobile Forensics ^mobile-forensics
+- Data collection
+	- data is on flash memory chips
+	- they have encryption enabled by default, need a decrypter
+		- password or user unlocks
+	- be sure you put your device in a faraday bag
+	- don’t have to unlock device because of the 5th amendment
+- Extraction and Analysis Methods
+	- techniques are like Windows and Linux workstations, because it’s all Unix or Linux based OSes
+	- Manual extraction
+		- just scroll through the device and find the stuff
+	- logical extraction
+		- utility from the device to extract data
+		- cloud backups, debug interface, etc
+	- file system extraction
+		- copy of all the unencrypted data
+		- like an imaging of a drive.
+	- call data extraction
+		- pull the data off of a SIM card
+		- all the calls, texts and contacts
+- Mobile Device forensics software
+	- cellebrite
+		- extracts from old phones and cloud data
+	- Mobile Phone Examiner Plus (MPE+)
+		- from the developers of FTK
+	- EnCase Portable
+		- from the developers of EnCase
+- Carrier Provider Logs
+	- records of device activity from the service provider with the use of a warrant
+	- information has a short retention period due to privacy laws
+	- kinds of information:
+		- call details
+		- voicemail details
+		- text details
+		- images sent over mms
+		- IP address destination
+		- session information
+		- geolocation data

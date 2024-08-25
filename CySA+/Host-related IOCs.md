@@ -1,0 +1,247 @@
+- What's a host?
+	- For this section: Windows computers/laptops
+	- and a little Linux
+	- another section will be mobile
+- IOCs tell us a lot
+	- Malware
+	- Unauthorized accounts/permissions
+	- file access/exfiltration
+### Malicious Processes
+- How can you tell if something is malicious?
+	- as always, “What is Normal?”
+- Malicious Process
+	- A process executed without proper authorization from the system owner for the purpose of damaging or compromising the system
+	- comes from malicious code injected into a host process via DLL in windows
+	- after that, you get abnormal process behavior
+- Abnormal Process Behavior
+	- Indicators that a legitimate process has been corrupted with malicious code for the purpose of damaging or compromising the system
+	- Determining what is abnormal, you need to track and find out What Is Normal
+- Windows Tools:
+	- SFC: System File Checker
+		- makes sure that everything the system creates is genuine
+	- Process Monitor
+	- Process Explorer
+	- tasklist
+	- PE Explorer
+		- Proprietary software
+- Linux Tools:
+	- pstree
+		- Linux command that provides the parent/child relationship of the process on a system
+		- ![[pstree.png]]
+	- ps
+		- command that lists the attributes of all processes started by the current user.
+		- for all processes by all users: `ps-A` or `ps-e`
+		- `ps -C cron`
+			- command to display the process for the cron command
+			- just that line
+		- `ps -A | sort -k 3`
+			- display process sorted by the third column (execution time)
+- Learn how to read Linux processes
+	- Daemons
+		- background service in Linux that runs as a process with the letter d after it
+			- e.g., httpd, sshd, ftpd
+	- systemd
+		- the init daemon in Linux that is first executed by the kernel during boot and always has process ID (PID) of 1
+	- PID
+		- identification number of a process in Linux
+		- Everyone gets one
+		- Used for referencing processes including killing them
+	- PPID (Parent PID)
+		- ID number of the parent process for every process launched by a Linux system
+- Malware often uses injection into Linux Shared libraries
+	- uses Shared Object (.so) files
+### Memory Forensics
+- Fileless malware
+	- executes from memory without saving anything to the filesystem
+	- if it does something, it will delete it more than likely
+- fileless detection techniques
+	- techniques that require analysis of the contents of system memory and process behavior rather than relying on scanning the file system
+- memory analysis tool
+	- will give you such great options like
+		- reverse engineer code used by process
+		- discover how processes interact with the file system(handles) and Registry
+		- examine network connections
+		- retrieve cryptographic keys
+		- extract strings
+- What kind of strings can you extract from these memory dumps?
+	- programs store strings which you can use to locate the message
+- FTK and EnCase include memory analysis modules
+- The Volatility Framework
+	- open-source memory forensics tool that has many different modules for analyzing specific elements of the memory such as a web browser module, command prompt history module and others.
+	- this will show the handles (file system interactions) for a process
+	- highlight your suspicious process
+	- do your research
+	- if positive, check the handles
+	- now you have some suspicious stuff, check the network monitor and if it’s reaching out.
+	- Memoryze
+		- free memory forensic software by FireEye that helps IR find evil in live memory.
+### Consumption
+- Resource consumption is a key indicator of malicious activity.
+	- can also occur with legitimate software
+	- This is why it’s important to find out What Is Normal™
+	- Jason references video recording software taking up a lot of processes lmao
+- Processor Usage
+	- Percentage of CPU time utilized on a per-process level
+- Memory Usage
+	- amount of memory utilized on a per-process level
+- Want to look at processes, not applications
+- Task Manager in windows
+	- Linux
+	- `free`
+		- Command that outputs a summary of the amount of used and freely available memory on the computer
+		- How much do you have, how much is available
+	- `top`
+		- commands that creates a scrollable table of every running process that refreshes
+	- `htop`
+		- similar to top, includes mouse support and contains a more easy to read output when run in default configuration
+- Looking at memory is important to identifying memory leaks or overflows
+- Memory Overflow
+	- a means of exploiting a vulnerability in an application to execute arbitrary code or to crash the process (or with an ongoing memory leak to crash the system)
+	- how to test:
+		- run the code in a sandbox to find the process exploiting a buffer overflow condition
+- Identify the signature of the buffer overflow attack
+- NOP-Sled ^nop-sled
+	- nop ^nop
+		- command that tells the computer to do nothing.
+	- named for sledding down a bunch of nops
+	- filling the memory with nothing, which it still has to process, to make it overflow
+	-  after putting in a bunch of nothing, jump to the shellcode
+	- we do this to trick the memory into executing the code at random, hoping it will “slide” into a jump into our shell code
+- ![[nop-sled.png]]]
+- attackers do this to achieve a DoS
+### Disk and File System
+- Malware is still likely to leave metadata on the file system even if it is fileless
+- Staging Area
+	- adversary begins to collect data here to exfiltrate
+		- types of files
+		- temp files/folders
+		- user profile locations
+		- data masked as logs
+		- alternate data streams
+		- whatever is in the recycle bin
+	- Data is often compressed and encrypted in staging area
+- Alternate Data Streams
+	- NTFS file system
+	- data within data
+	- can have ADS inside of an ADS
+- File System viewer
+	- tool that allows you to search the file system for keywords
+		- can analyze file metadata
+		- can use this to create a timeline
+- can use `dir` with some advance file system analysis
+	- `/Ax`
+		- filter all file/folder types that match the given parameter (x)
+		- ex: `dir /AH` (display only hidden files and folder)
+	- `/Q`
+		- Who owns each file
+	- `/R`
+		- displays alternate data streams for a file
+- Additional IOC: storage fills up
+	- caching files for exfiltration
+- Disk utilization tools
+	- scan a file system and retrieve comprehensive statistics
+		- visual representation of the space
+		- directory listing
+		- real time usage of data
+- Linux tools
+	- `lsof`
+		- retrieves a list of all files that are open
+		- list of all resources a process is currently using
+		- everything is a file, so it grabs everything
+		- ex: `lsof -u roote -a p 1645`
+			- show all files opened by root using process number 1645
+	- `df`
+		- retrieves how much disk space is being used by all mounted file systems and how much space is available for each
+	- `du`
+		- enables you to retrieve how much disk space a directory is using based on specified directory
+		- ex: `du /var/log`
+			- how much space is the log folder using
+- cryptographic analysis tools
+	- tools used to determine the type of encryption algorithm used and assess the strength of the encryption key
+	- must recover or brute force the user password to obtain the decryption key for an encrypted volume
+### Unauthorized Privilege
+- Privilege Escalation
+	- practice of exploiting flaws in an OS to gain a greater level of access than was intended
+- how do you see this?
+	- monitor authentication systems
+		- unauthorized sessions
+			- certain accounts access devices or services that they should not be authorized to access
+		- failed logons
+			- attempt to authenticate to the system using incorrect u/p combo
+			- doesn’t always mean you’re under attack
+			- you know this stuff
+		- new accounts
+			- attacker may be able to create new accounts and can be dangerous if they create an admin account
+			- you know this stuff
+		- guest account usage
+			- guest accounts can enable an attacker to log on to a domain and begin footprinting the network
+			- you know this stuff
+		- off-hours usage
+			- an account being used in off hours may indicate an attacker attempting to catch the org unaware
+			- you know this stuff
+- Unauthorized privileges 
+	- be careful who can access what
+	- here’s some tools:
+		- Microsoft Policy Analyzer
+		- AccessChk and AccessEnum
+			- part of Sysinternals
+### Unauthorized Software
+- obvious IOC
+- more subtle software-based IOC involves the presence of attack tools on a system
+- can be legitimate software that should not be installed on a specific workstation
+- if users can install other services on their machines
+	- kinda related to the apple hack
+- attackers can modify normal files for malicious use, like a host file
+	- DNS poisoning
+- can use forensics software to look at the web cache
+	- lol price of weed dot com
+	- most toolkits can view application usage and history
+- prefetch files
+	- files that record the names of applications that have been run along with metadata
+		- date and time, file path, run count and DLLs used by the exe
+- shimcache
+	- application usage cache that is stored in the registry as a key
+		- AppCompatCache 
+- amcache
+	- application usage cache that is stored as a hive file
+	- c:\windows\appcompat\programs\amcache.hve
+		- can be inspected by forensics tools
+### Unauthorized Change/Hardware
+- watch out for unauthorized changes in hardware
+- this can happen to software and hardware
+- common example: USB Drive
+- USB Firmware can be reprogrammed to make the device look like another device class
+- always have a sandbox to analyze any additional hardware
+### Persistence
+- the ability of a threat actor to maintain covert access to a target host or network
+- usually relies on modifying the registry or a system’s scheduled tasks
+- Registry
+	- database that stores low-level settings for Windows and the kernel, device drivers, Security Accounts Manger, and user interface\
+- Registry viewer tool
+	- can extract the Registry files from an image and display them on the analysis workstation
+- `regedit`
+	- tool doesn’t display the last modification of a value by default
+	- other tools:
+- `regdump`
+	- tool that dumps the contents of the registry in a text file
+	- use this to search, grep, etc
+- Windows have two types of autorun keys:
+	- Run
+		- initializes its values asynchronously when loading them from the registry
+			- runs things in any order
+	- RunOnce
+		- initializes its values in order when loading them from the registry
+			- runs things in an order
+			- bigger IOC, to start a vulnerable program then the bad stuff
+- attackers love to hide things in these keys
+- check the Registry entries for the system’s running drivers and services
+- can also change file association with common files like EXE, BAT, COM, CMD, etc
+- check Registry entries for recently used files
+- compare known key values to their current values or your baseline to find out if there was tampering
+	- “What is normal?”
+- Windows Task Scheduler
+	- enables you to create new tasks to run at predefined times
+	- may be able to capture the history of non-system services like malware
+- Linux time: crontab
+	- schedule cron jobs
+	- use `crontab -l` to show the current jobs

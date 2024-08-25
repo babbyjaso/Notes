@@ -1,0 +1,113 @@
+- Single or double quote doesn't matter
+	- ```"This is a string"```
+	- ```'This is a string too'```
+- Three double quotes in a row is for multi-line
+	- ```"""this is a multi
+	- ```line string"""
+- what if you need a string with a quote?
+	- use a backslash!
+		- backslash escapes the next character
+		- ```"I\"m a string"```
+		- ```'I\'m a string'```
+		- could also use a double quote to define the string and a single quote for the conjunction
+	- You can also escape hex characters
+		- ```"\x41\x42\x43"```
+- Multiple ways to do multiple characters ^mulltiply-string
+	- ```string9 = "aaaaaaaaaa"``` or
+	- ```string9 = "a" * 10```
+	- you can identify the length of a string using ```len(variable)```
+- True or false
+	- You can find out if there is a certain string in your [[Variables and data types#^variables|variables]] by asking it
+		- ```print("string" in string4)```
+			- This should spit out ```True``` (in your example at least)
+		- ```print("neut" in string4)```
+			- This should spit out ```False``` (in your example at least)
+- Does it start with _this_ string?
+	- ```print(string4.startswith("I"))```
+		- This should spit out ```True``` (in your example at least)
+	- ```print(string4.startswith("n"))```
+		- This should spit out ```False``` (in your example at least)
+- Where is this string? ^index
+	- ```print(string4.index("string"))```
+		- This will return with ```6``` because "string" starts at count 6
+- All caps
+	- ```print(string4.upper())```
+		- makes it all upper case
+	- ```print(string4.lower())```
+		- makes it all lower case
+- Messy strings
+	- we got a messy string
+		- ```messy_string = "     Messy string!     "```
+		- This could cause some issues because when printing this string, all the spaces are in tact
+	- strip the string!
+		- ```print(messy_string.strip())```
+			- spits out ```Messy string!```
+	- replace the string!
+		- ```print(messy_string.replace("!","?"))```
+			- spits out ```     Messy string?     ```
+				- Still got the spaces because we didn't strip it in this command as well.
+	- strip and replace the string!
+		- ```print(messy_string.replace("!","?").strip())```
+			- Now we got a clean ```Messy string?```
+	- split the string!
+		- spits out a [[Variables and data types#^list |list]] of what's in the string
+		- ```print(messy_string.split())```
+			- defaults to space as the delimiter
+			- spits out ```['Messy', 'string!']```
+			- can change the delimiter to anything you want
+				- ```print(messy_string.split(","))```
+					- now you're splitting with a ```,``` as the delimiter
+- Encoding strings
+	- does what it says, encodes the string
+		- ```string4.encode()```
+		- defaults to utf-8
+	- can specify the code inside of the brackets
+- Adjust your string
+	- makes your string a certain length
+	- ```string4.rjust(25)```
+		- will make your string 25 characters
+	- customize your delimiter
+		- `string4.rjust(25,"X")`
+	- Do the same with `string4.ljust()`
+- strings are immutable - they cannot be changed once defined ^immutable
+	- when python "adds" a string to another, it's just making another string
+		- `print("I am " + "a string")` becomes
+		- `I am a string` but this is a new string altogether
+		- This is called "concatenating"
+	- you can only concatenate strings to strings
+		- `print("String 4 is " + len(string4) " characters long")` will not work
+		- you gotta turn that len function into a string
+			- `print("String 4 is " + str(len(string4)) " characters long")`
+- sidebar: `+` is an overloaded operator
+	- combines numbers and strings without asking
+	- all depends on context
+- You also don't have to concatenate to get the same result as above
+	- `print("String 4 is {} characters long".format(len(string4)))`
+		- can avoid syntax errors with this (can't concatenate a function, etc.)
+	- placeholders for format are fun
+		- `print("{} {} {}".format(len(string4), 5.0, 0x12))`
+		- whatever you wanna put in there, as long as you have enough placeholders for it.
+	- you can even order them
+		- `print("{0} {2} {1}".format(len(string4), 5.0, 0x12))`
+		- spits out `14 18 5.0`
+	- You can even name them
+		- `print("{length}".format(length=len(string4)))`
+		- spits out `14`, or `len(string4)`
+	- You can even use it to plug in variables
+		- "define a literal string variable by prepending an f to the print statement"
+		- `length = len(string4)` 
+		- `print(f"string4 is {length} characters long")`
+			- spits out `string4 is 14 characters long`
+			- gotta put that f there to show where the format starts
+				- will throw a syntax error if the variable doesn't exist
+	- You can still specify how the data is printed
+		- `print("string4 is {length} charcters long".format(length=len(string4)))`
+		- If you want a float on the number, just put a colon
+			- `print("string4 is {length:.2f} charcters long".format(length=len(string4)))`
+				- spits out `string4 is 14.00 characters long`
+				- increase the number of float places with the number
+				- can also represent the number using various other counting methods
+					- hex `length:x`
+					- binary `length:b`
+					- octal `length:o` 
+		- great way to sort out data from scraping scripts

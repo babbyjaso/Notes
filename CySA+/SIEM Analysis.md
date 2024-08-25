@@ -1,0 +1,115 @@
+- keep in mind your metrics
+- Key Performance Indicators (KPI)
+	- quantifiable measure used to evaluate the success of an organization, employee, or other element in meetin objectives for performance.
+	- architects and engineers determine these measurements, not an analyst job.
+- Things to measure
+	- number of vulnerabilities
+	- number of failed log-ons
+	- number of vulnerable systems
+	- number of security incidents
+	- average response time
+	- average time to resolve tickets
+		- people will find a solution to their access problem
+	- number of outstanding issues
+	- number of employees are trained
+		- security basics
+	- % of testing completed
+		- for new applications and software
+	- and many, many more!
+- dashboard setup:
+	- you ended to display info based on the user’s role.
+- An analyst needs to dismiss false positives while responding to true positives
+- Analysis types
+	- conditional analysis
+	- signature detection, rule-based
+		- makes a lot of FPs
+		- can’t find zero-day or new TTPs
+	- Heuristic Analysis
+		- feature comparisons and likenesses
+		- this uses machine learning to alert on behavior that is similar
+		- getting the machine to learn causes a lot of noise
+	- Behavioral Analysis
+		- network monitoring that detects changes in normal operating data sequences
+	- Anomaly analysis
+		- network monitoring that uses a baseline of acceptable outcomes or patterns to see the bad stuff
+		- Anomaly analysis fires an alarm whenever something doesn’t follow a pattern or rule
+		- Anomaly analysis uses one size fits all patterns, behavioral analysis is a tailored solution.
+	- Trend analysis
+		- we need to see what’s happening for response actions.
+		- can also make you investigate previous trends
+	- Frequency-based analysis
+		- establishes a baseline for a metric and monitors the number of occurrences over time
+		- i.e., spikes in login events due to shift changes
+	- Volume-based analysis
+		- measure a metric based on the size of something such as disk space used or log file size.
+	- Statistical deviation
+		- uses mean and standard deviations to determine if a data point should be treated as suspicious
+		- triggers when it’s outside the normal
+	- dependent on what metrics are used and the baseline
+	- “what is normal?”
+	- things you can measure
+		- alerts and incidents
+		- time to respond
+		- network or host metrics
+		- training and education
+		- compliance
+		- external threat levels
+	- sparse attack
+		- bury their attacks in the network noise
+		- low and slow infiltration
+- if you get a lot of false positives, the analysts will tune down the system to be less sensitive
+- just because you didn’t catch them right there, doesn’t mean they won’t do something else that the trend can see is strange
+- Narrative-based threat awareness nad intelligence
+	- form of trend analysis that is reported in long form prose to describe a common attack vector seen over time
+	- i.e., IRC became a vector for C2, therefore block IRC protocol
+	- always playing catch up with malicious actors
+- SIEM Queries
+	- query all the data you have stored
+	- Select, Where, Sorted By
+	- less a rule to fire an alarm and more setting up a dashboard
+- Uh oh, it’s RegEx ^regex
+	- `[]`
+		- match single instance of character within the brackets
+		- `[a-z]`, single lowercase character in this whole thing
+		- `[\s]`, white space
+		- `[\d]`, single digit
+	- `+`
+		- matches one or more occurrences
+	- `*`
+		- matches zero or more occurrences
+	- `?`
+		- matches one or none times
+	- `{ }`
+		- matches the number of times in the braces
+		- `\d{3}`, matches 3 digits
+		- `\d{7-10}`, matches 7 to 10 digits
+	- `()`
+		- defines a matching group with a regex sequence placed in the parentheses, and then each group scan subsequently be referred to by `\1` for the first, `\2` for two, etc.
+	- `|`
+		- OR logical operator
+	- `^`
+		- only return the matches at the beginning of the line
+	- `$`
+		- only return the matches at the end of the line
+	- `\`
+		- treat next character as the literal character, not the special regex meaning character
+	- for more practice: regexr.com
+- talking about grep now
+	- if you want grep on your windows: find for basic strings, findstr for regex
+### Scripting
+- Exam Tip ^exam-tip
+	- really useful in the real world, and also needed to read for Pentest+
+- powershell
+	- works on “verb-noun” syntax
+		- i.e. “write-host” write to the host, or echo
+		- “get-eventlog” get from the eventlog
+	- what is a commandlet?
+- WMIC, Windows Management Instrumentation Command-line
+	- remotely access log files on a windows machine
+	- NTEVENT = given search parameters to search a log
+- Python and Ruby
+	- used a lot by pentesters and cybersecurity analysts
+	- not compiled, reads everything line by line
+- awk
+	- scripting engine in Linux geared towards modifying and extracting data from files or data streams
+- filtering logs

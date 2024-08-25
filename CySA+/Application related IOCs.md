@@ -1,0 +1,91 @@
+- check out application logs
+- we’ll go over virtualization as well
+### Anomalous Activity
+- gotta look for stuff
+- places to look:
+	- Web apps
+	- databases
+	- DNS services
+	- Remote access servers
+- anomalous = unusual
+- you do this shit
+- some examples
+	- Unexpected outbound communication
+		- looking at all network connections are understood and approved
+		- make sure you know who’s calling who
+	- Unexpected output
+		- unusual request patterns or responses
+		- can indicate an ongoing or past attack
+		- bonus: look for code by examining data base reads or HTTP response packet sizes
+			- more bytes, more code
+		- look out for strange strings as well
+	- Service Defacement
+		- when an attacker gains control of a web server and alters the presentation of the website.
+		- white hat or black hat stuff.
+		- restore a backup and fix it
+### Service Interruptions
+- not always an IOC
+	- stuff breaks
+- things to check
+	- security services are prevented from running
+	- processes running the server are compromised.
+	- the service may be disabled by a DDoS/DoS
+	- Excessive bandwidth usage is disrupting a service
+	- None of these mean that you’re under attack
+- Service analysis tools
+	- Task Manager
+	- services.msc
+	- CLI: net start
+	- PS: Get-Service
+	- cron
+	- systemctl
+	- ps, top, etc. linux stuff
+### Application Logs
+- CHECK THE LOGS
+- The Four Nations:
+	- DNS Event Logs
+		- logs each time the DNS server is asked for information
+	- HTTP Access Logs
+		- logs each time HTTP traffic had an error or pre-defined rules
+		- checking the status codes
+		- client based codes: 400 range
+		- Server based codes: 500 range
+		- some logs the header, which has both client and server codes hell yeah
+		- the User-Agent field is cool, but can be easily spoofed
+	- FTP Access Logs
+		- contain FTP traffic
+		- 530 = user needs to log in
+		- 230 = user has logged in
+		- 331 = password required
+		- SSH access logs
+	- SQL Event Logs
+		- shows a lot of data about the database and the server of what’s running SQL
+		- somethings you will see:
+			- query operation performed
+			- schema associated with the operation
+			- object of the query
+### New Accounts
+- an attacker’s favorite persistence attack
+- used to maintain access
+- always monitor your new account creation.
+- account and session tools
+	- local users and groups
+		- Win tool to manage local groups
+	- AD Users and computers tool
+		- AD’s management of users on a DC
+	- can still be managed by net commands or WMIC or PS
+	- Linux
+		- `who`
+			- shows what users are logged in, date they logged in
+		- `w`
+			- see above and returns remote host, idle time
+		- `rwho`
+			- client/server architecture that displays who
+		- `lastlog`
+			- shows /var/log/lastlog file
+			- this shows the users that logged in, when they logged in
+		- `faillog`
+			- displays failed logins
+- always remember that there are multiple ways to skin a cat
+### [[Digital Forensics#^virtualization-forensics|Virtualization Forensics]]
+### [[Digital Forensics#^mobile-forensics|Mobile Forensics]]

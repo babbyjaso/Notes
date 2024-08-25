@@ -1,0 +1,43 @@
+- multiple values in one variable
+	- Like strings, they are [[String formatting#^immutable|immutable]]
+	- we can make the variable anything
+		- [[String formatting|Strings]]
+			- `tuple_items = ("item1", "item2", "item3")`
+		- [[Numbers|Numbers]]
+			- `tuple_number = (1, 2, 3)`
+		- Can even use overloaded [[Booleans & Operators#^operators|operators]] like this [[String formatting#^mulltiply-string|example]]
+			- `tuple_repeat = ("Combine!",) * 4`
+			- spits out `('Combine!', 'Combine!', 'Combine!', 'Combine!')`
+- Can have nested tuples
+	- `mixed_tuple = ("A", 1, ("A", 1))`
+	- spits out `('A', 1, ('A', 1))`
+- Can combine tuples into one tuple
+	- `tuple_combined = tuple_items + tuple_number`
+	- spits out `('item1', 'item2', 'item3', 1, 2, 3)`
+- Can assign multiple variables to a tuple
+	- kinda like [[Variables and data types#^list|lists]]
+	- `item1, item2, item3 = tuple_items`
+	- Need to have the same number of variables as tuple items
+	- useful for unpacking the tuples
+- Can use booleans on tuples
+	- `print("item2" in tuple_items)`
+	- spits out `True`
+	- `print("item4" in tuple_items)`
+	- spits out `False`
+- Can index your tuples
+	- `tuple_items.index("item2")`
+		- if printed, will spit out `1`
+		- remember, we count starting from 0
+	- `print(tuple_items[1]`
+		- spits out the same as the previous command
+	- can start from the end using `-1`
+		- `print(tuple_items[-1])`
+			- `-1` gets you the last item
+			- `-2` gets you the second last item, etch
+- Can slice (index) your tuples
+	- technically extracting i think
+	- `print(tuple_items[0:2])`
+		- spits out `('item1', 'item2')`
+		- only takes items 0 through 1 of the slice
+	- can be replicated with `print(tuple_items[:2])`
+- 

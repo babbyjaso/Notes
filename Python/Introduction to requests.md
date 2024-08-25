@@ -1,0 +1,59 @@
+- this is for getting information from websites
+	- HTTP requests
+		- GET
+		- PUT
+		- HEAD
+		- etc.
+	- we're gonna use httpbin.org
+		- reflects the requests back to us to make sure they work
+- `import requests`
+	- now get cracking
+- have to assign it to a variable
+	- `x = requests.get('http://httpbin.org/get')`
+- from there we can play with it
+	- `print(x.headers)`
+		- prints the headers, similar to a curl
+	- `print(x.headers['Server'])`
+		- specify what part of the headers you wanna look at
+	- `print(x.status_code)`
+		- prints the status code
+		- can use this to verify if something connected successfully:
+			- `if x.status_code == 200: print("Success!")`
+- would want to know how much time has elapsed from sending to receiving the response
+	- `print(x.elapsed)`
+- see the cookies
+	- `print(x.cookies)`
+- see the content
+	- `print(x.text)`
+- can specify parameters
+	- `x = requests.get('http://httpbin.org/get', params={'id':'1'})`
+	- `x = requests.get('http://httpbin.org/get?id=1')`
+- can specify certain headers
+	- `x = requests.get('http://httpbin.org/get', params={'id':'3'}, headers={'Accept':'application/json'})`
+- we can upload multi part encoded files
+	- `files = {'file': open('google.png', 'rb')}`
+	- `x = requests.post('http://httpbin.org/post', files=files)`
+	- this will post the request `google.png` in base64
+- we can authenticate with basic authentication
+	- `x = requests.get('http://httpbin.org/get', auth=('username','password'))`
+- we can have failed requests
+	- `x = requests.get('https://expired.badssl.com')`
+	- and to bypass: `x = requests.get('https://expired.badssl.com', verify=False)`
+- by default, it will redirect for all verbs except HEAD
+	- you can prevent the redirect by having `allow_redirects=False`
+- specify timeout to stop waiting
+	- `timeout=0.01`
+- all of this has been stateless, so let's carry over some information
+	- `x = requests.get('http://httpbin.org/cookies', cookies={'a':'b'})`
+	- once we get it, we can specify it in the request
+- but we also get sessions!
+```
+x = requests.Session()
+x.cookies.update({'a':'b'})
+print(x.get('http://httpbin.org/cookies').text)
+```
+- we could pass json responses as json
+	- `x = requests.get('https://api.github.com/events')`
+	- `print(x.json())`
+- check the official documentation
+	- https://pypi.org/project/requests/
