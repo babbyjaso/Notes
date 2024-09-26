@@ -8,18 +8,31 @@
         "type": "tabs",
         "children": [
           {
-            "id": "91745f7b37167271",
+            "id": "dfb05964acce2efe",
             "type": "leaf",
             "state": {
               "type": "markdown",
               "state": {
-                "file": "Cross-Site Scripting (XSS).md",
+                "file": "Malware Analysis/Programs/x*dbg.md",
+                "mode": "source",
+                "source": false
+              }
+            }
+          },
+          {
+            "id": "690f17932e2f6446",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "Malware Analysis/Programs/x*dbg.md",
                 "mode": "source",
                 "source": false
               }
             }
           }
-        ]
+        ],
+        "currentTab": 1
       }
     ],
     "direction": "vertical"
@@ -65,8 +78,7 @@
               "state": {}
             }
           }
-        ],
-        "currentTab": 1
+        ]
       }
     ],
     "direction": "horizontal",
@@ -86,7 +98,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "Cross-Site Scripting (XSS).md",
+                "file": "Malware Analysis/Programs/x*dbg.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -103,7 +115,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "Cross-Site Scripting (XSS).md",
+                "file": "Malware Analysis/Programs/x*dbg.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -126,7 +138,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "Cross-Site Scripting (XSS).md"
+                "file": "Malware Analysis/Programs/x*dbg.md"
               }
             }
           }
@@ -145,20 +157,45 @@
       "daily-notes:Open today's daily note": false,
       "templates:Insert template": false,
       "command-palette:Open command palette": false,
-      "git-integration:Open git menu": false
+      "obsidian-kanban:Create new board": false,
+      "omnisearch:Omnisearch": false
     }
   },
-  "active": "a61c53ac67302a7e",
+  "active": "690f17932e2f6446",
   "lastOpenFiles": [
+    "Malware Analysis/Dynamic Analysis.md",
+    "Malware Analysis/Static Analysis.md",
+    "Malware Analysis/Programs/x*dbg.md",
+    "Malware Analysis.zip",
+    "Malware Analysis.zip.h0fe8m.part",
+    "Malware Analysis/Programs/PEstudio.md",
+    "Malware Analysis/Programs/Cutter.md",
+    "Malware Analysis/Programs",
+    "Malware Analysis/Images/Pasted image 20240926155204.png",
+    "Malware Analysis/Images/Screenshot_20240926_144814.png",
+    "Malware Analysis/Images",
+    "Malware Analysis/Images",
+    "Malware Analysis/Programs/Process Hacker 2.md",
+    "Malware Analysis/Programs/TCPview.md",
+    "Malware Analysis/Programs/PEview.md",
+    "Malware Analysis/Programs/ProcMon.md",
+    "Malware Analysis/Programs/Strings.md",
+    "Malware Analysis/Programs/FLOSS.md",
+    "Malware Analysis/Packed Malware.md",
+    "Advanced Analysis.md",
+    "Process Tree.md",
+    "^urlmon.md",
+    "Web Application Security/Cross-Site Scripting (XSS).md",
+    "Python/Comprehensions.md",
+    "Python/Booleans & Operators.md",
+    "Malware Analysis",
+    "CySA+/Email.md",
+    "CySA+/Digital Forensics.md",
     "eJPT/Metasploit modules.md",
     "eJPT/NMap scripts.md",
     "CySA+/Analyzing Network IOCs.md",
     "Welcome.md",
     "Untitled.canvas",
-    "Python/Variables and data types.md",
-    "Python/String formatting.md",
-    "Python/Functions and code reuse.md",
-    "Python/Booleans & Operators.md",
-    "Cross-Site Scripting (XSS).md"
+    "Python/Variables and data types.md"
   ]
 }

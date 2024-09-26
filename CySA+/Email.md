@@ -46,4 +46,3 @@
     - send over certificate with public key and digital ID, signs the message using the private key
     - receive certificate, use the public key to decode the signature and the CA (Certificate Authority) validating the cert and the digital ID
     - recipient will do the process over again, trust established
-**![](https://lh7-us.googleusercontent.com/jTL82ZAsno80Hkd_PVYv3oULPJpELOLcct632nTD_MzEMnGqcLzlaZ3Bv6VVOmgGQQXJrJ_pFikfyvbwoL5Qv6XEBiz9acYHCtvHg4PEenrZnQ0wZ86m4h8WDLnMN9fgRUvATjhjZWq6ITA-EMQjTks)**
