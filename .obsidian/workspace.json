@@ -13,26 +13,38 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "Malware Analysis/Programs/x*dbg.md",
+                "file": "Malware Analysis/Dynamic Analysis.md",
                 "mode": "source",
                 "source": false
               }
             }
           },
           {
-            "id": "690f17932e2f6446",
+            "id": "9c6312d7f8aa5471",
             "type": "leaf",
             "state": {
               "type": "markdown",
               "state": {
-                "file": "Malware Analysis/Programs/x*dbg.md",
+                "file": "Malware Analysis/MalDocs.md",
+                "mode": "source",
+                "source": false
+              }
+            }
+          },
+          {
+            "id": "a7afe36e04f0cdb4",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "Malware Analysis/MalDocs.md",
                 "mode": "source",
                 "source": false
               }
             }
           }
         ],
-        "currentTab": 1
+        "currentTab": 2
       }
     ],
     "direction": "vertical"
@@ -51,7 +63,7 @@
             "state": {
               "type": "file-explorer",
               "state": {
-                "sortOrder": "alphabetical"
+                "sortOrder": "byCreatedTime"
               }
             }
           },
@@ -98,7 +110,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "Malware Analysis/Programs/x*dbg.md",
+                "file": "Malware Analysis/MalDocs.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -115,7 +127,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "Malware Analysis/Programs/x*dbg.md",
+                "file": "Malware Analysis/MalDocs.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -138,7 +150,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "Malware Analysis/Programs/x*dbg.md"
+                "file": "Malware Analysis/MalDocs.md"
               }
             }
           }
@@ -161,15 +173,19 @@
       "omnisearch:Omnisearch": false
     }
   },
-  "active": "690f17932e2f6446",
+  "active": "a7afe36e04f0cdb4",
   "lastOpenFiles": [
+    "Malware Analysis/Programs/oledump.py.md",
     "Malware Analysis/Dynamic Analysis.md",
+    "Malware Analysis/Programs/Cutter.md",
     "Malware Analysis/Static Analysis.md",
+    "Malware Analysis/MalDocs.md",
+    "README.md",
     "Malware Analysis/Programs/x*dbg.md",
+    "2024-09-26.md",
     "Malware Analysis.zip",
     "Malware Analysis.zip.h0fe8m.part",
     "Malware Analysis/Programs/PEstudio.md",
-    "Malware Analysis/Programs/Cutter.md",
     "Malware Analysis/Programs",
     "Malware Analysis/Images/Pasted image 20240926155204.png",
     "Malware Analysis/Images/Screenshot_20240926_144814.png",
@@ -193,9 +209,6 @@
     "CySA+/Digital Forensics.md",
     "eJPT/Metasploit modules.md",
     "eJPT/NMap scripts.md",
-    "CySA+/Analyzing Network IOCs.md",
-    "Welcome.md",
-    "Untitled.canvas",
-    "Python/Variables and data types.md"
+    "Untitled.canvas"
   ]
 }
