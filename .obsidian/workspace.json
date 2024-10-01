@@ -20,6 +20,30 @@
             }
           },
           {
+            "id": "317fcf9cbbde7825",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "Malware Analysis/WannaCry.md",
+                "mode": "source",
+                "source": false
+              }
+            }
+          },
+          {
+            "id": "78b8854b44601e28",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "Malware Analysis/Assembly.md",
+                "mode": "source",
+                "source": false
+              }
+            }
+          },
+          {
             "id": "9c6312d7f8aa5471",
             "type": "leaf",
             "state": {
@@ -31,7 +55,8 @@
               }
             }
           }
-        ]
+        ],
+        "currentTab": 2
       }
     ],
     "direction": "vertical"
@@ -97,7 +122,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "Malware Analysis/Dynamic Analysis.md",
+                "file": "Malware Analysis/Assembly.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -114,7 +139,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "Malware Analysis/Dynamic Analysis.md",
+                "file": "Malware Analysis/Assembly.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -137,7 +162,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "Malware Analysis/Dynamic Analysis.md"
+                "file": "Malware Analysis/Assembly.md"
               }
             }
           }
@@ -160,22 +185,29 @@
       "omnisearch:Omnisearch": false
     }
   },
-  "active": "dfb05964acce2efe",
+  "active": "78b8854b44601e28",
   "lastOpenFiles": [
+    "Malware Analysis/Images/Pasted image 20240930195510.png",
+    "Malware Analysis/WannaCry.md",
+    "Malware Analysis/Assembly.md",
+    "Malware Analysis/Static Analysis.md",
+    "Malware Analysis/Images/Pasted image 20240928151613.png",
+    "README.md",
+    "Malware Analysis/Programs/PEstudio.md",
+    "Malware Analysis/Programs/PEview.md",
+    "Malware Analysis/Packed Malware.md",
+    "Malware Analysis/Images/Pasted image 20240928140453.png",
+    "Malware Analysis/Dynamic Analysis.md",
     "Malware Analysis/MalDocs.md",
     "Malware Analysis/Programs/oledump.py.md",
     "Malware Analysis/Programs/dnspy.md",
     "Malware Analysis/Programs/scdbg.md",
     "Malware Analysis/Images/Pasted image 20240928121125.png",
-    "README.md",
-    "Malware Analysis/Dynamic Analysis.md",
     "Malware Analysis/Programs/Cutter.md",
-    "Malware Analysis/Static Analysis.md",
     "Malware Analysis/Programs/x*dbg.md",
     "2024-09-26.md",
     "Malware Analysis.zip",
     "Malware Analysis.zip.h0fe8m.part",
-    "Malware Analysis/Programs/PEstudio.md",
     "Malware Analysis/Programs",
     "Malware Analysis/Images/Pasted image 20240926155204.png",
     "Malware Analysis/Images/Screenshot_20240926_144814.png",
@@ -183,20 +215,15 @@
     "Malware Analysis/Images",
     "Malware Analysis/Programs/Process Hacker 2.md",
     "Malware Analysis/Programs/TCPview.md",
-    "Malware Analysis/Programs/PEview.md",
     "Malware Analysis/Programs/ProcMon.md",
     "Malware Analysis/Programs/Strings.md",
     "Malware Analysis/Programs/FLOSS.md",
-    "Malware Analysis/Packed Malware.md",
     "Advanced Analysis.md",
     "Process Tree.md",
     "^urlmon.md",
     "Web Application Security/Cross-Site Scripting (XSS).md",
     "Python/Comprehensions.md",
-    "Python/Booleans & Operators.md",
     "Malware Analysis",
-    "CySA+/Email.md",
-    "CySA+/Digital Forensics.md",
     "Untitled.canvas"
   ]
 }
