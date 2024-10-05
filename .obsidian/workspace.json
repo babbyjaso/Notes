@@ -14,7 +14,7 @@
               "type": "markdown",
               "state": {
                 "file": "Malware Analysis/Assembly.md",
-                "mode": "source",
+                "mode": "preview",
                 "source": false
               }
             }
@@ -69,8 +69,7 @@
       }
     ],
     "direction": "horizontal",
-    "width": 300,
-    "collapsed": true
+    "width": 300
   },
   "right": {
     "id": "da4e0f7c474d0a4a",
