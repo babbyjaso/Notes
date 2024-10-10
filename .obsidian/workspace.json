@@ -8,43 +8,18 @@
         "type": "tabs",
         "children": [
           {
-            "id": "78b8854b44601e28",
+            "id": "c66fdf8503dc3a16",
             "type": "leaf",
             "state": {
               "type": "markdown",
               "state": {
-                "file": "Malware Analysis/Assembly.md",
-                "mode": "source",
-                "source": false
-              }
-            }
-          },
-          {
-            "id": "0507a39a85b936f0",
-            "type": "leaf",
-            "state": {
-              "type": "markdown",
-              "state": {
-                "file": "Malware Analysis/Memory.md",
-                "mode": "source",
-                "source": false
-              }
-            }
-          },
-          {
-            "id": "601496dba6ef1559",
-            "type": "leaf",
-            "state": {
-              "type": "markdown",
-              "state": {
-                "file": "README.md",
+                "file": "Malware Analysis/Reports.md",
                 "mode": "source",
                 "source": false
               }
             }
           }
-        ],
-        "currentTab": 2
+        ]
       }
     ],
     "direction": "vertical"
@@ -110,7 +85,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "README.md",
+                "file": "Malware Analysis/Reports.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -133,7 +108,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "README.md"
+                "file": "Malware Analysis/Reports.md"
               }
             }
           },
@@ -143,7 +118,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "README.md",
+                "file": "Malware Analysis/Reports.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -174,11 +149,14 @@
       "omnisearch:Omnisearch": false
     }
   },
-  "active": "601496dba6ef1559",
+  "active": "c66fdf8503dc3a16",
   "lastOpenFiles": [
-    "Malware Analysis/Memory.md",
-    "README.md",
     "Malware Analysis/Yara.md",
+    "Malware Analysis/Reports.md",
+    "Malware Analysis/WannaCry.md",
+    "README.md",
+    "Malware Analysis/Memory.md",
+    "Malware Analysis/Assembly.md",
     "Malware Analysis/Programs/dnspy.md",
     "Malware Analysis/Static Analysis.md",
     "Malware Analysis/Programs/scdbg.md",
@@ -187,13 +165,11 @@
     "Malware Analysis/Packed Malware.md",
     "Malware Analysis/Programs/oledump.py.md",
     "Malware Analysis/Images/Screenshot_20241006_180500.png",
-    "Malware Analysis/Assembly.md",
     "Malware Analysis/Images/Pasted image 20241006171006.png",
     "Malware Analysis/Images/Pasted image 20241005160552.png",
     "Malware Analysis/Images/Pasted image 20241001174628.png",
     "Malware Analysis/Programs/Cutter.md",
     "Malware Analysis/Images/Pasted image 20240930195510.png",
-    "Malware Analysis/WannaCry.md",
     "Malware Analysis/Images/Pasted image 20240928151613.png",
     "Malware Analysis/Programs/PEstudio.md",
     "Malware Analysis/Programs/PEview.md",
@@ -216,7 +192,6 @@
     "Advanced Analysis.md",
     "Process Tree.md",
     "^urlmon.md",
-    "Web Application Security/Cross-Site Scripting (XSS).md",
     "Malware Analysis",
     "Untitled.canvas"
   ]
