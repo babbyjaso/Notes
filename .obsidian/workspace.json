@@ -13,7 +13,7 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "Malware Analysis/Reports.md",
+                "file": "Malware Analysis/Yara.md",
                 "mode": "source",
                 "source": false
               }
@@ -85,7 +85,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "Malware Analysis/Reports.md",
+                "file": "Malware Analysis/Yara.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -108,7 +108,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "Malware Analysis/Reports.md"
+                "file": "Malware Analysis/Yara.md"
               }
             }
           },
@@ -118,7 +118,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "Malware Analysis/Reports.md",
+                "file": "Malware Analysis/Yara.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -151,6 +151,19 @@
   },
   "active": "c66fdf8503dc3a16",
   "lastOpenFiles": [
+    "Python/Variables and data types.md",
+    "Web Application Security/Authentication.md",
+    "Web Application Security/Web Technology.md",
+    "Web Application Security/Web Application Security.md",
+    "Web Application Security/Subdomain Enumeration.md",
+    "Web Application Security/Standards and Best Practices.md",
+    "Web Application Security/Setting up the lab.md",
+    "Web Application Security/Scope, Ethics, Code of Conduct, etc..md",
+    "Web Application Security/SQL Injection.md",
+    "Web Application Security/Phase of a Pentest.md",
+    "Web Application Security/File Inclusion.md",
+    "Web Application Security/Fingerprinting Web Technologies.md",
+    "Web Application Security/HTTP & DNS.md",
     "Malware Analysis/Yara.md",
     "Malware Analysis/Reports.md",
     "Malware Analysis/WannaCry.md",
@@ -168,15 +181,10 @@
     "Malware Analysis/Images/Pasted image 20241006171006.png",
     "Malware Analysis/Images/Pasted image 20241005160552.png",
     "Malware Analysis/Images/Pasted image 20241001174628.png",
-    "Malware Analysis/Programs/Cutter.md",
     "Malware Analysis/Images/Pasted image 20240930195510.png",
     "Malware Analysis/Images/Pasted image 20240928151613.png",
-    "Malware Analysis/Programs/PEstudio.md",
-    "Malware Analysis/Programs/PEview.md",
     "Malware Analysis/Images/Pasted image 20240928140453.png",
     "Malware Analysis/Images/Pasted image 20240928121125.png",
-    "Malware Analysis/Programs/x*dbg.md",
-    "2024-09-26.md",
     "Malware Analysis.zip",
     "Malware Analysis.zip.h0fe8m.part",
     "Malware Analysis/Programs",
@@ -184,14 +192,6 @@
     "Malware Analysis/Images/Screenshot_20240926_144814.png",
     "Malware Analysis/Images",
     "Malware Analysis/Images",
-    "Malware Analysis/Programs/Process Hacker 2.md",
-    "Malware Analysis/Programs/TCPview.md",
-    "Malware Analysis/Programs/ProcMon.md",
-    "Malware Analysis/Programs/Strings.md",
-    "Malware Analysis/Programs/FLOSS.md",
-    "Advanced Analysis.md",
-    "Process Tree.md",
-    "^urlmon.md",
     "Malware Analysis",
     "Untitled.canvas"
   ]

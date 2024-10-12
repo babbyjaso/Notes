@@ -11,10 +11,10 @@ Recon is everything, and this is about recon.
 		- wappalyzer https://www.wappalyzer.com/
 			- in browser tool to analyze the website's technologies
 			- breaks it down into categories
-		- curl -I (capital i)
+		- `curl -I` 
 			- gives additional resolution when trying to look up the site
 			- If you need to follow a redirect -L option
 		- securityheaders.com https://securityheaders.com/
 			- will tell you all the security headers that curl spits out, but clean
-		- nmap -p443 -A
+		- `nmap -p443 -A`
 			- if you wanna get crazy, --script=http-server-header
