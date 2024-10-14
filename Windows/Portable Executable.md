@@ -1,0 +1,19 @@
+- Format that has information about the executable, the data and the structure of this data
+	- Typically the header for the contents
+- You can see this data in the hex dump of an executable
+	- Referencing back to the magic byte of `MZ` at the beginning of executables
+- Structure of PE data:
+	- DOS Header
+		- defines the file format
+		- typically `.exe`
+	- PE header
+		- has information of the binary
+			- format
+			- signature
+			- image file header
+			- etc.
+		- Typically can see it start when you see `PE` in the dump
+	- Image Optional Header
+	- Data Dictionaries
+	- Section Table
+		- table of contents for the data in the executable

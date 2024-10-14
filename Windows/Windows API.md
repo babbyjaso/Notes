@@ -1,0 +1,19 @@
+- Windows has a lot of internal components that need to interact with the physical hardware and/or memory
+- The [kernel](https://en.wikipedia.org/wiki/Kernel_(operating_system)) bridges this this and controls those operations
+- Applications typically can't interact with the kernel or modify physical hardware, so they made different modes to access this hardware:
+	- User mode
+		- Can't directly access hardware
+		- creates a process in virtual address space
+		- access to shared physical memory
+	- Kernel mode
+		- can directly access hardware
+		- runs in a single shared virtual address
+		- access to all of the system memory
+- Switching between these is typically controlled by the system and API calls
+	- sometimes referred to as the "switching point"
+- When applications are started in user mode, they will stay there until a system and/or API call is made.
+	- APIs interface with the system, so that's the call
+	- ![[Pasted image 20241013195028.png]]
+- after this call is made, the application switches to kernel mode
+- because of this, we can edit code to inject any process we want
+	- as long as we have the code

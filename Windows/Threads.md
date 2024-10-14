@@ -1,0 +1,26 @@
+- "A thread is an executable unit employed by a process and scheduled based on device factors."
+	- Here are some of those factors
+		- CPU
+		- Memory specifications
+		- Priority
+		- Logical factors
+		- etc.
+- Basically, controls the execution of a process
+	- because they control execution, it's targeted
+	- if you control when and what is executed, injection is trivial
+	- or get API calls to remote in to get other instructions
+- Threads share details with the process
+- Unique values for threads
+	- Stack
+		- relevant and specific data of the thread
+	- Thread Local Storage
+		- pointers for unique data
+	- Stack Argument
+		- Thread's unique ID
+		- You'll have multiple threads (multiple things need to happen in a process) so you'll get multiple IDs
+		- Allows passing of data between threads
+	- Context Structure
+		- Stores where the thread is to the kernel
+- Can filter out threads created in [[ProcMon]]
+	- ![[Screenshot_20241013_124153.png]]
+	- ![[Screenshot_20241013_124219.png]]

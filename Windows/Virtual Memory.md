@@ -1,0 +1,15 @@
+- Once you understand [[Memory]], you can understand Virtual Memory
+- Virtual memory provides each process with [Virtual Address Space](https://learn.microsoft.com/en-us/windows/win32/memory/virtual-address-space)
+	- this space is for just that process, no other
+- These address are not the physical memory, but can be referenced using a "page table"
+	- This page table is maintained by the system
+	- Every time a thread is referenced, this page table translates the virtual address to the physical address
+	- Some applications use more virtual memory than physical, which the system will double book physical space for several virtual spaces
+		- ![[Pasted image 20241013133507.png]]
+- All of this is to cause less damage to physical memory
+- x86 architectures can't use more than 4GB of physical memory because of this
+	- [Not as boring document](https://learn.microsoft.com/en-us/windows/win32/memory/memory-limits-for-windows-releases)
+	- system no know what do with more than 4GB, so only 4GB is used
+	- [The more boring document for x64 architectures (spoilers the limit is terabytes)](https://learn.microsoft.com/en-us/windows/win32/winprog64/virtual-address-space)
+- Per the document, physical memory is 50/50 split between use between processes and the system
+	- You can change this using [AWE](https://learn.microsoft.com/en-us/windows/win32/memory/address-windowing-extensions) but just go x64 at that point please

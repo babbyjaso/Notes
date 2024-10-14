@@ -1,0 +1,31 @@
+- What make the program do
+- Application != Process
+	- applications trigger processes
+	- usually has multiple processes executed to work
+- [There's a whole docs page about processes and threads](https://learn.microsoft.com/en-us/windows/win32/procthread/about-processes-and-threads)
+- Process has
+	- [[Virtual Memory|Virtual address space]]
+		- memory addresses for the process
+	- executable code
+		- code in those memory addresses
+	- open handles to system objects
+		- [a number that is defined to tell system resources what that process is](https://learn.microsoft.com/en-us/windows/win32/procthread/process-handles-and-identifiers)
+		- not a PID, but close to it
+	- security context
+		- access token that grants it authorizations if it needs them
+	- unique process identifier
+		- unique number of the process
+	- environment variables
+	- priority class
+	- minimum and maximum working set sizes
+	- [at least one thread of execution](https://learn.microsoft.com/en-us/windows/win32/procthread/creating-threads)
+		- [[Threads]]
+		- section of a process scheduled for execution
+		- can have multiple executions, thus multiple threads
+- Default applications that start processes
+	- MsMpEng (MSDef)
+	- wininit (human interaction device)
+	- lsass (Local Security Authority Subsystem Service)
+		- Security process
+- If you're targeting persistence, you want a fake process running
+	- Injection or Masquerading
