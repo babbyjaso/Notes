@@ -1,0 +1,69 @@
+Two types of components for Active Directory
+- Physical
+	- Data Store
+		- Consists of the Ntds.dit file
+			- has all your hashes and passwords
+		- Is stored by default in the %SystemRoot%\NTDS folder on all domain controllers
+		- Is accessible only through the domain controller process and protocols
+	- Domain controllers
+		- Hosts a copy of the AD DS directory store
+		- Provide authentication and authorization services
+		- Replicate updates to other domain controllers in the domain and forest
+		- Allow administrative access to manage user accounts and network resources
+	- Global catalog server
+	- Read-Only Domain Controller (RODC)
+- Logical
+	- Partitions
+	- Schema
+		- Defines every type of object that can be stored in the directory
+		- Enforces rules regarding object creation and configuration
+		- two types of objects:
+			- Class Object
+				- Objects can be created in the directory
+				- ex: Users, computers
+			- Attribute Object
+				- Information that can be attacked to an object
+				- ex: Display name
+	- Domains
+		- Groups and manages objects in an organization
+		- An administrative boundary for applying policies to groups of objects
+		- A replication boundary for replicating data between domain controllers
+		- An authentication and authorization boundary that provides a way to limit the scope of access to resources
+	- Domain trees
+		- Hierarchy of domains in AD DS
+		- Shares a contiguous namespace with the parent domain
+			- ex: the main domain is "contoso.com" while the trees will be "na.contoso.com" or "uk.contoso.com"
+		- Can have additional child domains
+			- the children are the "na.contoso.com" to the parent of "contoso.com"
+		- By default creates a two-way transitive trust with other domains
+	- Forests
+		- Collection of Domain trees
+		- Shares a lot of things over the domains
+			- schema
+			- configuration partition
+			- global catalog
+		- enables trusts between all domains in the forest
+		- Share enterprise admin and schema admin groups
+	- Sites
+	- Organization units (OUs)
+		- AD containers that can have users, groups, computers or other OUs
+		- Gives the ability to manage a collection of objects in a consistent way
+			- permissions
+			- policies
+			- etc.
+	- Trusts
+		- Mechanism for users to gain access to resources in another domain
+			- all domains in a forest trust all other domains in the forest
+			- trusts can extend to outside the forest
+		- two types:
+		- Directional
+			- flows from the trusting domain to the trusted domain
+		- Transitive
+			- includes other trusted domains
+	- Objects
+		- Things in the Domain
+			- Users
+			- Groups
+			- Computers
+			- Printers
+			- Shared Folders

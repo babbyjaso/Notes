@@ -54,7 +54,7 @@
     - `http-methods`
 	    - `--script-args="http-methods.url-path=/directory"`
 	    - will show you all the methods that you can interact with the website
-	-` http-webdav-scan`
+	- `http-webdav-scan`
 	    - if you find a webdav folder
 	    - uses same args from above
 - SSH

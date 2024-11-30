@@ -172,3 +172,22 @@
 	- Always disable WPS
 ### Hashcat
 - cracks hashes
+- processes all of this using the GPU for processing speed
+How to do it:
+- Throw all your hashes into a file
+- Throw that file into Hashcat
+- get hashes, pwned
+How to do it, more specifically
+- Find the specific hash module that you want
+	- NTLMv2 typically when doing AD (5600)
+	- `-m 5600`
+- specify the hash file `hashes.txt` or whatever
+- specify the wordlist
+	- `/usr/share/wordlists/rockyou.txt`
+	- whatever flavor you want to use
+- hit enter, hope for a password
+- tips and tricks
+	- `-O` to optimize the speed of the cracking
+	- use a different wordlist
+		- rockyou2021.txt
+	- checkout rule sets for hashcat

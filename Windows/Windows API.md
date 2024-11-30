@@ -1,4 +1,4 @@
-- Windows has a lot of internal components that need to interact with the physical hardware and/or memory
+lol- Windows has a lot of internal components that need to interact with the physical hardware and/or memory
 - The [kernel](https://en.wikipedia.org/wiki/Kernel_(operating_system)) bridges this this and controls those operations
 - Applications typically can't interact with the kernel or modify physical hardware, so they made different modes to access this hardware:
 	- User mode
