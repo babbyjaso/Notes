@@ -4,6 +4,9 @@
 	    - will show if it runs smb2
 	- `auxiliary/scanner/smb/smb_login`
 		- used for brute forcing
+	- `auxiliary/smb/psexec`
+		- check to be sure you're using the x64 shell payload
+		- can use the hashes with 
 - HTTP
 	- `use auxiliary/scanner/http/http_version`
     - `use auxiliary/scanner/http/brute_dirs`

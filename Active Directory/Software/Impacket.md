@@ -1,0 +1,14 @@
+Got a list of targets? put them in a text file and target them with Impacket
+- `ntlmrelayx.py`
+	- to target a file, put `-tf`
+- [[SMB Relay]]
+	- once you check that an [[SMB Relay]] attack is viable, be sure to turn off HTTP and SMB from [[Responder]] so Impacket isn't fighting over ports
+	- `-smb2support`
+	- This is also a way to get hashes
+		- You should probably copy the hash
+	- Have a few options as well with this
+		- `-i` for interactive session
+			- will create a shell on the target
+			- just have to fire up your `nc` to bind to the home port it puts it on
+		- `-c` to enter a command
+			- wrap the command in double quotes

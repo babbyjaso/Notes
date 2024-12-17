@@ -41,6 +41,8 @@
 	    - runs the shares script and also does ls on those shares
 	    - now we can see what’s in the stuff
     - `smb-os-discovery`
+    - `smb2-security-mode`
+	    - checks to see if SMB signing is enabled on the target
 - FTP
 	- `ftp-brute`
 	    - will brute force a list you give it
