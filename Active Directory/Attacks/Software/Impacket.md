@@ -1,6 +1,9 @@
 Got a list of targets? put them in a text file and target them with Impacket
 - `ntlmrelayx.py`
 	- to target a file, put `-tf`
+		- this file must have all the target IPs in it
+	- target `-t`
+		- just put the IP or username
 - [[SMB Relay]]
 	- once you check that an [[SMB Relay]] attack is viable, be sure to turn off HTTP and SMB from [[Responder]] so Impacket isn't fighting over ports
 	- `-smb2support`

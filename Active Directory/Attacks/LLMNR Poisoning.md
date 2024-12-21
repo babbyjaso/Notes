@@ -3,9 +3,9 @@ Essentially a MitM attack
 - Used to identify hosts when DNS fails
 - Key feature is that services utilize a user's username an NTLMv2 hash when appropriately responded to
 - Flow breakdown:
-	- DNS does not know how to connect to a computer
-	- DNS asks all how to connect to said computer
-	- Hacker machine responds with "yes, I do. Send your hash to connect"
+	- DNS does not know how to connect to your computer
+	- DNS asks all how to connect to your computer
+	- Your computer responds with "yes, I do. Send your hash to connect"
 	- Hash get, pwned
 ### Critical tool: [[Responder]]
 - Make sure HTTP and SMB is on for this
