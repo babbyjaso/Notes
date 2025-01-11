@@ -5,7 +5,7 @@ Responds to traffic to get hashes
 - We can also just make the traffic ourselves if we want
 	- try to access a file share that points to our machine
 	- Because Responder responds, we get a response with a hash and username
-	- Use Hashcat to crack (if it's weak enough), pwned
+	- Use Hashcat to crack (if it's weak enough), free PW
 - `sudo responder -I eth0 -dwPv`
 	- need to run responder with elevated privs
 	- `-I` specifies interface
