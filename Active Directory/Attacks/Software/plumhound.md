@@ -1,4 +1,4 @@
-just go to [github](https://github.com/PlumHound/PlumHound) and get it, dummy
+ just go to [github](https://github.com/PlumHound/PlumHound) and get it, dummy
 
 `sudo python2 PlumHound.py --easy -p [password from neo4j]`
 need bloodhound to be open

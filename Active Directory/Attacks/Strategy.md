@@ -18,3 +18,10 @@ You've got a user: now what?
 	- plumhound
 	- ldapdomaindump
 	- pingcastle
+Third things third:
+- got creds, got machines, time to get some secrets
+	- [[secretsdump.py]]
+	- [[crackmapexec]]
+- You'll get local accounts from this
+- take those local accounts and go over the same machines again
+- Find hash? Crack hash
