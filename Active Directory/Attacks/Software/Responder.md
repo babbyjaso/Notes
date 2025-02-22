@@ -6,7 +6,7 @@ Responds to traffic to get hashes
 	- try to access a file share that points to our machine
 	- Because Responder responds, we get a response with a hash and username
 	- Use Hashcat to crack (if it's weak enough), free PW
-- `sudo responder -I eth0 -dwPv`
+- `sudo responder -I eth0 -dPv`
 	- need to run responder with elevated privs
 	- `-I` specifies interface
 	- `-d` will answer DHCP broadcast requests

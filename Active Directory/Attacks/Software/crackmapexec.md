@@ -1,3 +1,4 @@
+AKA `netexec`
 - Pushes valid creds to other machines on the network to see if they'll work
 - Great for seeing if an admin has logins on other machines
 - Uses SMB to communicate
@@ -18,3 +19,5 @@ Has modules
 - Check with `-L`
 	- `lsassy`
 		- dump the lsass, see if anyone has any cached creds on it
+	- `slinky`
+		- can look up file shares on systems
