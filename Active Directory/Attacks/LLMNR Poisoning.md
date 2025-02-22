@@ -9,7 +9,7 @@ Essentially a MitM attack
 	- Hash get, pwned
 ### Critical tool: [[Responder]]
 - Make sure HTTP and SMB is on for this
-	- `responder -I eth0 -dwPv`
+	- `responder -I eth0 -dPv`
 - if you're just training, you can just make some traffic to get some hashes
 	- shows that whenever network activity happens, we'll probably get a hash
 ### How to stop it
