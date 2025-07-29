@@ -1,6 +1,6 @@
 `ldapdomaindump`
 You have a way in, dump the ldap
-- `sudo ldapdomaindump ldaps://[domain IP] -u 'domain\user' -p Password`
+- `sudo ldapdomaindump ldap://[domain IP] -u 'domain\user' -p Password`
 	- we're `ldapdomaindump`ing the `[domain IP]`
 	- with the user (`-u`) `'domain\user'`
 	- and their password (`-p`) `Password1`

@@ -10,18 +10,25 @@ Subdomains exist, you should enumerate them.
 			- % wildcard because it's a database
 - CLI tools
 	- subfinder ^subfinder
-		- -d for domain
-		- -o to write to a file to grep later
+		- `-d` for domain
+		- `-o` to write to a file to grep later
 	- assetfinder ^assetfinder
 		- just put in your domain
 	- amass ^amass
-		- you should try out amass, because it seems interesting.
+		- go based subdomain enumerator
+		- `amass enum -d [domain]`
+		- this will take a while
 	- httprobe
-		- you can use this to find out what subdomains are alive
+		- go tool you can use this to find out what subdomains are alive
+		- makes an HTTP/S request to see if it responds with anything
+		- options
+			- `-s` remove normal ports
+			- `-p https:433` only checks 443
 	- gowitness
 		- give it a file and take screenshots
+			- saves default to new `screenshots` folder
 		- options
-			- -f = directory file
-			- -P = where to put the screenshots
-			- --no-http = little self explanatory
+			- `-f` = directory file
+			- `-P` = where to put the screenshots
+			- `--no-http` = little self explanatory
 		- this also makes sure that it's alive

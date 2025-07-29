@@ -2,7 +2,7 @@ eJPT refresher
 - aka "Directory Busting"
 	- bustin makes me feel good
 - If you encounter a default webpage, you should report that
-	- poor hygine
+	- poor hygiene
 	- "what else is running by default?"
 - Tools
 	- ffuf ^ffuf
